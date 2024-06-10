@@ -1,0 +1,296 @@
+import { useState, useRef } from 'react';
+import { DataTable, Table } from '@primer/react/experimental';
+import { requestLog } from '../../../data/Data';
+import { Box, Dialog, Heading, Link, Text, Button } from '@primer/react';
+import { FilterBar } from '../../FilterBar/FilterBar';
+
+export function RequestLog() {
+  const title = 'Request log';
+  const description = 'View usage by individual request';
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const returnFocusRef = useRef(null);
+
+  const openModal = (row) => {
+    setSelectedRow(row);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedRow(null);
+    setIsOpen(false);
+  };
+
+  const label = {
+    width: '130px',
+    fontWeight: 'semibold',
+    fontSize: '12px',
+    color: 'fg.muted',
+  };
+
+  const layout = {
+    display: 'flex',
+    flexDirection: 'column',
+  };
+
+  const container = {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 3,
+  };
+
+  const formatNumberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  return (
+    <Box sx={{ width: '100%', mt: 5 }}>
+      <Box
+        sx={{
+          pb: 2,
+          mb: 3,
+          borderBottom: '1px solid',
+          borderColor: 'border.default',
+          width: '100%',
+        }}
+      >
+        <Heading
+          sx={{
+            fontSize: 3,
+          }}
+        >
+          {title}
+        </Heading>
+        <Text
+          sx={{
+            color: 'fg.muted',
+            fontSize: 1,
+          }}
+        >
+          {description}
+        </Text>
+      </Box>
+      <FilterBar />
+      <Table.Container
+        sx={{
+          width: '100%',
+        }}
+      >
+        <DataTable
+          data={requestLog}
+          columns={[
+            {
+              header: 'Request',
+              field: 'request',
+              rowHeader: true,
+              renderCell: (row) => (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <Link
+                    data-testid='trigger-button'
+                    ref={returnFocusRef}
+                    onClick={() => openModal(row)}
+                    sx={{
+                      color: 'fg.default',
+                      fontSize: 1,
+                      fontWeight: 'semibold',
+                      // mb: 1,
+                      cursor: 'pointer',
+                      ':hover': {
+                        color: 'accent.emphasis',
+                        textDecoration: 'none',
+                      },
+                    }}
+                  >
+                    {/* <Text sx={{ mr: 1 }}>{row.type}</Text> */}
+
+                    <Text sx={{ fontWeight: 'semibold' }}>{row.path}</Text>
+                  </Link>
+                  <Text
+                    sx={{
+                      color: 'fg.muted',
+                      fontWeight: 400,
+                    }}
+                  >
+                    <Text>{row.type}</Text>
+                    {' · '}
+                    {row.ip}
+                  </Text>
+                </Box>
+              ),
+            },
+            {
+              header: 'Status',
+              field: 'status',
+              width: '25%',
+              renderCell: (row) => (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '100%',
+                  }}
+                >
+                  <Text sx={{ fontSize: 1 }}>
+                    <Box
+                      sx={{
+                        display: 'inline-block',
+                        bg:
+                          row.status === 200
+                            ? 'success.emphasis'
+                            : 'danger.emphasis',
+                        borderRadius: '12px',
+                        color: 'canvas.default',
+                        width: '8px',
+                        height: '8px',
+                        mr: 2,
+                      }}
+                    />
+                    {row.status || 'Failed'}
+                  </Text>
+                  <Text
+                    sx={{
+                      fontSize: '12px',
+                      color: 'fg.muted',
+                      display: 'block',
+                      textOverflow: 'ellipsis',
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap',
+                      width: '100%',
+                    }}
+                  >
+                    {row.error}
+                  </Text>
+                </Box>
+              ),
+            },
+            {
+              header: 'Date',
+              field: 'date',
+              width: '25%',
+              renderCell: (row) => <Text sx={{ fontSize: 1 }}>{row.time}</Text>,
+            },
+          ]}
+        />
+        <Table.Pagination
+          aria-label='Pagination for access tokens'
+          pageSize={10}
+          totalCount={40}
+        />
+      </Table.Container>
+      {selectedRow && (
+        <Dialog
+          returnFocusRef={returnFocusRef}
+          isOpen={isOpen}
+          onDismiss={closeModal}
+          aria-labelledby='header'
+          sx={{
+            borderRadius: '12px',
+            overflow: 'hidden',
+            width: '640px',
+          }}
+        >
+          <div data-testid='inner'>
+            <Dialog.Header
+              id='header'
+              sx={{
+                bg: 'canvas.default',
+              }}
+            >
+              Request summary
+            </Dialog.Header>
+            <Box
+              fontSize='1'
+              p={3}
+              sx={container}
+            >
+              <Box sx={layout}>
+                <Text sx={label}>API path</Text>
+                <Text sx={{ fontWeight: 'normal' }}>{selectedRow.path}</Text>
+              </Box>
+              <Box sx={layout}>
+                <Text sx={label}>API route</Text>
+                <Text sx={{ fontWeight: 'normal' }}>{selectedRow.route}</Text>
+              </Box>
+              <Box sx={layout}>
+                <Text sx={label}>Status</Text>
+                <Text sx={{ fontWeight: 'normal' }}>
+                  <Box
+                    sx={{
+                      display: 'inline-block',
+                      bg:
+                        selectedRow.status === 200
+                          ? 'success.emphasis'
+                          : 'danger.emphasis',
+                      borderRadius: '12px',
+                      color: 'canvas.default',
+                      width: '8px',
+                      height: '8px',
+                      mr: 2,
+                    }}
+                  />
+                  {selectedRow.status}
+                </Text>
+              </Box>
+              {selectedRow.status !== 200 && (
+                <Box sx={layout}>
+                  <Text sx={label}>Error</Text>
+                  <Text sx={{ fontWeight: 'normal' }}>{selectedRow.error}</Text>
+                </Box>
+              )}
+              <Box sx={layout}>
+                <Text sx={label}>Requests</Text>
+                <Text sx={{ fontWeight: 'normal' }}>
+                  <Text
+                    as='span'
+                    color={
+                      selectedRow.request > 15000
+                        ? 'danger.emphasis'
+                        : 'fg.default'
+                    }
+                  >
+                    {formatNumberWithCommas(selectedRow.request)}
+                  </Text>{' '}
+                  / 15,000 per hour
+                </Text>
+              </Box>
+              <Box sx={layout}>
+                <Text sx={label}>Time</Text>
+                <Text sx={{ fontWeight: 'normal' }}>{selectedRow.time}</Text>
+              </Box>
+              <Box sx={layout}>
+                <Text sx={label}>IP address</Text>
+                <Text sx={{ fontWeight: 'normal' }}>{selectedRow.ip}</Text>
+              </Box>
+              <Box sx={layout}>
+                <Text sx={label}>Repository</Text>
+                <Link sx={{ cursor: 'pointer' }}>
+                  <Text sx={{ fontWeight: 'normal' }}>
+                    {selectedRow.repository}
+                  </Text>
+                </Link>
+              </Box>
+            </Box>
+          </div>
+          <Box
+            sx={{
+              borderTop: '1px solid',
+              borderColor: 'border.default',
+              p: 3,
+              display: 'flex',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Button onClick={closeModal}>Close</Button>
+          </Box>
+        </Dialog>
+      )}
+      {/* ... */}
+    </Box>
+  );
+}
