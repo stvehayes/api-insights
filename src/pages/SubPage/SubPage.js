@@ -18,7 +18,8 @@ export function SubPage() {
           <Box
             sx={{
               display: 'flex',
-              gap: 3,
+              flexDirection: ['column', null, 'row'],
+              gap: [0, null, 3],
             }}
           >
             <DataCard
@@ -53,7 +54,8 @@ export function SubPage() {
           <Box
             sx={{
               display: 'flex',
-              gap: 3,
+              flexDirection: ['column', null, 'row'],
+              gap: [0, null, 3],
             }}
           >
             {trends.map((trend) => (

@@ -6,16 +6,11 @@ import { Footer } from '../components/Footer/Footer';
 export function Page({ children }) {
   return (
     <ThemeProvider colorMode='light'>
-      <BaseStyles
-        sx={{
-          height: '100vh',
-        }}
-      >
+      <BaseStyles sx={{}}>
         <Navigation />
         <Box
           sx={{
             display: 'flex',
-            height: '100%',
             bg: 'canvas.default',
           }}
         >

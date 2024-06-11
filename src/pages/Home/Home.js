@@ -25,14 +25,14 @@ export function Home() {
       <Box
         sx={{
           width: '100%',
-          height: 'fit-content',
         }}
       >
         <Header />
         <Box
           sx={{
             display: 'flex',
-            gap: 3,
+            flexDirection: ['column', null, 'row'],
+            gap: [0, null, 3],
           }}
         >
           <DataCard

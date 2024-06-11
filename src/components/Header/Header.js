@@ -46,6 +46,7 @@ export function Header() {
         width: '100%',
         alignSelf: 'flex-start',
         display: 'flex',
+        flexDirection: ['column', null, 'row'],
         gap: 2,
         mb: 3,
       }}
