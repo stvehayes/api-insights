@@ -23,7 +23,6 @@ export function Page({ children }) {
               width: '100%',
               borderLeft: '1px solid',
               borderColor: 'border.default',
-              height: '-webkit-fill-available',
             }}
           >
             {children}

@@ -2,7 +2,7 @@ import { Box, Text, TextInput } from '@primer/react';
 import { XCircleFillIcon } from '@primer/octicons-react';
 import { Filters } from '../Filters/Filters';
 
-export function FilterBar() {
+export function FilterBar({ count, empty }) {
   return (
     <>
       <Box
@@ -11,7 +11,10 @@ export function FilterBar() {
           width: '100%',
         }}
       >
-        <Filters />
+        <Filters
+          empty
+          count={count}
+        />
         <Box
           sx={{
             position: 'relative',
@@ -24,38 +27,42 @@ export function FilterBar() {
               width: '100%',
               borderTopLeftRadius: 0,
               borderBottomLeftRadius: 0,
-              pl: '196px',
+              pl: empty ? 0 : '108px',
             }}
             trailingAction={
-              <TextInput.Action
-                icon={XCircleFillIcon}
-                aria-label='Clear input'
-                sx={{ color: 'fg.subtle' }}
-              />
+              !empty && (
+                <TextInput.Action
+                  icon={XCircleFillIcon}
+                  aria-label='Clear input'
+                  sx={{ color: 'fg.subtle' }}
+                />
+              )
             }
           />
-          <Box
-            sx={{
-              position: 'absolute',
-              left: 2,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              fontSize: 1,
-              display: 'flex',
-            }}
-          >
-            <Text>rate limited:</Text>
-            <Text
+          {!empty && (
+            <Box
               sx={{
-                bg: 'accent.subtle',
-                borderRadius: 1,
-                px: 1,
-                color: 'accent.emphasis',
+                position: 'absolute',
+                left: 2,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                fontSize: 1,
+                display: 'flex',
               }}
             >
-              true
-            </Text>
-          </Box>
+              <Text>rate limited:</Text>
+              <Text
+                sx={{
+                  bg: 'accent.subtle',
+                  borderRadius: 1,
+                  px: 1,
+                  color: 'accent.emphasis',
+                }}
+              >
+                true
+              </Text>
+            </Box>
+          )}
         </Box>
       </Box>
     </>

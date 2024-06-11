@@ -12,7 +12,7 @@ import {
   XIcon,
 } from '@primer/octicons-react';
 
-export function Filters() {
+export function Filters({ count, empty }) {
   const [isOpen, setIsOpen] = useState(false);
   const returnFocusRef = useRef(null);
 
@@ -92,7 +92,7 @@ export function Filters() {
       <Button
         ref={returnFocusRef}
         onClick={() => setIsOpen(true)}
-        count={2}
+        count={count || 0}
         sx={{
           borderTopRightRadius: 0,
           borderBottomRightRadius: 0,

@@ -36,7 +36,7 @@ export function RequestLog() {
 
   const container = {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: ['1fr', null, '1fr 1fr'],
     gap: 3,
   };
 
@@ -45,33 +45,11 @@ export function RequestLog() {
   };
 
   return (
-    <Box sx={{ width: '100%', mt: 5 }}>
-      <Box
-        sx={{
-          pb: 2,
-          mb: 3,
-          borderBottom: '1px solid',
-          borderColor: 'border.default',
-          width: '100%',
-        }}
-      >
-        <Heading
-          sx={{
-            fontSize: 3,
-          }}
-        >
-          {title}
-        </Heading>
-        <Text
-          sx={{
-            color: 'fg.muted',
-            fontSize: 1,
-          }}
-        >
-          {description}
-        </Text>
-      </Box>
-      <FilterBar />
+    <Box
+      sx={{ width: '100%', mt: 5 }}
+      id='requests'
+    >
+      <FilterBar count={1} />
       <Table.Container
         sx={{
           width: '100%',

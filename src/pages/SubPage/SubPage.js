@@ -1,15 +1,21 @@
-import { Box } from '@primer/react';
+import { useState } from 'react';
+import { Box, UnderlineNav } from '@primer/react';
 import { Page } from '../../layouts/Page';
 import { Header } from '../../components/Header/Header';
 import { DataCard } from '../../components/DataCard/DataCard';
 import { accessTokens } from '../../data/Data';
 import { RequestLog } from '../../components/Tables/RequestLog/RequestLog';
+import { RouteLog } from '../../components/Tables/RouteLog/RouteLog';
 import { TrendCard } from '../../components/TrendCard/TrendCard';
 import { trends } from '../../data/Data';
 import { DataChart } from '../../components/DataChart/DataChart';
 import { calculatePercentage, formatNumber } from '../../util/Helpers';
+import { UnderlineNavItem } from '@primer/react/lib-esm/UnderlineNav/UnderlineNavItem';
 
 export function SubPage() {
+  const children = ['Request log', 'Routes'];
+  const [currentTab, setCurrentTab] = useState(children[0]);
+
   return (
     <Page>
       <Box width='100%'>
@@ -60,6 +66,7 @@ export function SubPage() {
           >
             {trends.map((trend) => (
               <TrendCard
+                key={trend.title}
                 title={trend.title}
                 data={trend.data}
                 description={trend.description}
@@ -69,7 +76,20 @@ export function SubPage() {
         </Box>
 
         <Box>
-          <RequestLog />
+          <UnderlineNav aria-label='Nav'>
+            {children.map((child, index) => (
+              <UnderlineNavItem
+                key={index}
+                aria-current={currentTab === child ? 'page' : undefined}
+                onClick={() => setCurrentTab(child)}
+                href='#requests'
+              >
+                {child}
+              </UnderlineNavItem>
+            ))}
+          </UnderlineNav>
+          {currentTab === 'Request log' && <RequestLog />}
+          {currentTab === 'Routes' && <RouteLog />}
         </Box>
       </Box>
     </Page>

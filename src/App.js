@@ -8,16 +8,11 @@ import { Home } from './pages/Home/Home';
 function App() {
   return (
     <ThemeProvider colorMode='light'>
-      <BaseStyles
-        sx={{
-          height: '100%',
-        }}
-      >
+      <BaseStyles sx={{}}>
         <Navigation />
         <Box
           sx={{
             display: 'flex',
-            height: '100%',
             bg: 'canvas.default',
           }}
         >
