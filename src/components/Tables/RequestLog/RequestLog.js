@@ -1,13 +1,10 @@
 import { useState, useRef } from 'react';
 import { DataTable, Table } from '@primer/react/experimental';
 import { requestLog } from '../../../data/Data';
-import { Box, Dialog, Heading, Link, Text, Button } from '@primer/react';
+import { Box, Dialog, Link, Text, Button } from '@primer/react';
 import { FilterBar } from '../../FilterBar/FilterBar';
 
 export function RequestLog() {
-  const title = 'Request log';
-  const description = 'View usage by individual request';
-
   const [isOpen, setIsOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const returnFocusRef = useRef(null);

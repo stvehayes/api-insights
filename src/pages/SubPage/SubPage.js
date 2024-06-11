@@ -20,7 +20,7 @@ export function SubPage() {
     <Page>
       <Box width='100%'>
         <Box width='100%'>
-          <Header />
+          <Header type='GitHub App' />
           <Box
             sx={{
               display: 'flex',

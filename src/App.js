@@ -1,8 +1,6 @@
-import { ThemeProvider, BaseStyles, Box, Text } from '@primer/react';
+import { ThemeProvider, BaseStyles, Box } from '@primer/react';
 import { Navigation } from './components/Navigation/Navigation';
 import { SideNav } from './components/SideNav/SideNav';
-import ColorModeSwitcher from './ColorModeSwitcher';
-import { Header } from './components/Header/Header';
 import { Home } from './pages/Home/Home';
 
 function App() {

@@ -1,14 +1,11 @@
 import { useState, useRef } from 'react';
 import { DataTable, Table } from '@primer/react/experimental';
 import { requestLog } from '../../../data/Data';
-import { Box, Dialog, Heading, Link, Text, Button } from '@primer/react';
+import { Box, Dialog, Link, Text, Button } from '@primer/react';
 import { FilterBar } from '../../FilterBar/FilterBar';
 import { formatNumber } from '../../../util/Helpers';
 
 export function RouteLog() {
-  const title = 'Request log';
-  const description = 'View usage by individual request';
-
   const [isOpen, setIsOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const returnFocusRef = useRef(null);
@@ -23,26 +20,10 @@ export function RouteLog() {
     setIsOpen(false);
   };
 
-  const label = {
-    width: '130px',
-    fontWeight: 'semibold',
-    fontSize: '12px',
-    color: 'fg.muted',
-  };
-
-  const layout = {
-    display: 'flex',
-    flexDirection: 'column',
-  };
-
   const container = {
     display: 'grid',
     gridTemplateColumns: ['1fr', null, '1fr 1fr'],
     gap: 3,
-  };
-
-  const formatNumberWithCommas = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
   return (

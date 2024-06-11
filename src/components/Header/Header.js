@@ -6,11 +6,12 @@ import {
   Heading,
   Link,
   Text,
+  Label,
 } from '@primer/react';
 import { timePeriods, timeIncrements } from '../../data/Data';
 import { useLocation } from 'react-router-dom';
 
-export function Header() {
+export function Header({ type }) {
   const location = useLocation().pathname;
   const [selectedIndex, setSelectedIndex] = useState(2);
   const [selectedIncrementIndex, setSelectedIncrementIndex] = useState(3);
@@ -53,7 +54,7 @@ export function Header() {
         <Heading sx={{ fontSize: 3, display: 'inline' }}>
           {location === '/' ? 'API' : <Link href='/'>API</Link>}
           {location === '/' ? null : (
-            <>
+            <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
               <Text
                 sx={{
                   display: 'inline',
@@ -71,7 +72,13 @@ export function Header() {
               >
                 {location.split('/')[1]}
               </Text>
-            </>
+              <Label
+                variant='secondary'
+                sx={{ ml: 2, mt: '2px' }}
+              >
+                {type || 'Token'}
+              </Label>
+            </Box>
           )}
         </Heading>
       </Box>
