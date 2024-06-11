@@ -3,14 +3,12 @@ import {
   ActionMenu,
   ActionList,
   Box,
-  Button,
   Heading,
   Link,
   Text,
 } from '@primer/react';
 import { timePeriods, timeIncrements } from '../../data/Data';
 import { useLocation } from 'react-router-dom';
-import { UpgradeDialog } from '../UpgradeDialog/UpgradeDialog';
 
 export function Header() {
   const location = useLocation().pathname;
@@ -60,7 +58,6 @@ export function Header() {
                 sx={{
                   display: 'inline',
                   fontSize: 'inherit',
-                  fontSize: 'inherit',
                   mx: 2,
                 }}
               >
@@ -69,7 +66,6 @@ export function Header() {
               <Text
                 sx={{
                   display: 'inline',
-                  fontSize: 'inherit',
                   fontSize: 'inherit',
                 }}
               >

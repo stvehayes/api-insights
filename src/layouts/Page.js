@@ -1,4 +1,4 @@
-import { ThemeProvider, BaseStyles, Box, Text } from '@primer/react';
+import { ThemeProvider, BaseStyles, Box } from '@primer/react';
 import { Navigation } from '../components/Navigation/Navigation';
 import { SideNav } from '../components/SideNav/SideNav';
 import { Footer } from '../components/Footer/Footer';

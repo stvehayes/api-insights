@@ -1,9 +1,8 @@
-import { Box, Heading, Text } from '@primer/react';
+import { Box } from '@primer/react';
 import { Header } from '../../components/Header/Header';
 import { DataCard } from '../../components/DataCard/DataCard';
 import { DataChart } from '../../components/DataChart/DataChart';
-import { TrendCard } from '../../components/TrendCard/TrendCard';
-import { cards, trends, accessTokens } from '../../data/Data';
+import { accessTokens } from '../../data/Data';
 import { AccessTokens } from '../../components/Tables/AccessTokens/AccessTokens';
 import { Page } from '../../layouts/Page';
 
