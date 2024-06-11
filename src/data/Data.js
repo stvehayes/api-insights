@@ -39,27 +39,27 @@ export const trends = [
     ],
   },
   {
-    title: 'Top rate limited reasons',
-    description: 'Most used rate limited paths by this organization',
+    title: 'Top IP addresses',
+    description: 'Most used IP addresses by this organization',
     data: [
       {
-        value: 'api/time-based',
+        value: '192.168.0.13',
         count: '4.9k',
       },
       {
-        value: 'api/time-based-graphql',
+        value: '192.168.0.42',
         count: '2.3k',
       },
       {
-        value: 'api/search-ip-address',
+        value: '192.168.0.71',
         count: '1.2k',
       },
       {
-        value: 'api/authentication',
+        value: '192.168.0.28',
         count: '1.1k',
       },
       {
-        value: 'api/search-elapsed-time',
+        value: '192.168.0.56',
         count: '1.0k',
       },
     ],
