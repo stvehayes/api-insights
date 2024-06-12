@@ -11,6 +11,7 @@ import { trends } from '../../data/Data';
 import { DataChart } from '../../components/DataChart/DataChart';
 import { calculatePercentage, formatNumber } from '../../util/Helpers';
 import { UnderlineNavItem } from '@primer/react/lib-esm/UnderlineNav/UnderlineNavItem';
+import { format } from 'prettier';
 
 export function SubPage() {
   const children = ['Request log', 'Routes'];
@@ -40,14 +41,10 @@ export function SubPage() {
             />
             <DataCard
               title='Rate limited requests'
-              description='Percentage of requests that were rate limited'
-              data={calculatePercentage(
+              description='Amount of requests that were rate limited'
+              data={formatNumber(
                 accessTokens.reduce(
-                  (sum, item) => sum + item.rateLimitedRequests,
-                  0
-                ),
-                accessTokens.reduce(
-                  (sum, item) => sum + item.totalRequests * 5,
+                  (sum, item) => sum + item.rateLimitedRequests / 20,
                   0
                 )
               )}

@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { useState } from 'react';
 import {
   ActionMenu,
@@ -15,6 +16,7 @@ export function Header({ type }) {
   const location = useLocation().pathname;
   const [selectedIndex, setSelectedIndex] = useState(2);
   const [selectedIncrementIndex, setSelectedIncrementIndex] = useState(3);
+
   const timePeriod = [
     {
       type: 'Last hour',
@@ -76,7 +78,7 @@ export function Header({ type }) {
                 variant='secondary'
                 sx={{ ml: 2, mt: '2px' }}
               >
-                {type || 'Token'}
+                GitHub App
               </Label>
             </Box>
           )}

@@ -14,11 +14,6 @@ export function Home() {
     return num.toString();
   };
 
-  const calculatePercentage = (part, total) => {
-    if (total === 0) return '0%';
-    return ((part / total) * 100).toFixed(1) + '%';
-  };
-
   return (
     <Page>
       <Box
@@ -43,13 +38,12 @@ export function Home() {
           />
           <DataCard
             title='Rate limited requests'
-            description='Percentage of requests that were rate limited'
-            data={calculatePercentage(
+            description='Amount of requests that were rate limited'
+            data={formatNumber(
               accessTokens.reduce(
-                (sum, item) => sum + item.rateLimitedRequests,
+                (sum, item) => sum + item.rateLimitedRequests / 3,
                 0
-              ),
-              accessTokens.reduce((sum, item) => sum + item.totalRequests, 0)
+              )
             )}
           />
         </Box>
