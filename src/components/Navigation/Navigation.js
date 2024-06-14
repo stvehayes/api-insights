@@ -68,6 +68,7 @@ export function Navigation() {
         sx={{
           display: 'flex',
           bg: 'canvas.subtle',
+          borderBottom: '1px solid',
           borderColor: 'border.default',
           p: 3,
           justifyContent: 'space-between',
@@ -134,7 +135,7 @@ export function Navigation() {
           />
         </Box>
       </Box>
-      <Box
+      {/* <Box
         sx={{
           bg: 'canvas.subtle',
         }}
@@ -151,7 +152,7 @@ export function Navigation() {
             </UnderlineNav.Item>
           ))}
         </UnderlineNav>
-      </Box>
+      </Box> */}
     </Box>
   );
 }
