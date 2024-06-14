@@ -1,5 +1,5 @@
-import { Box, Text, TextInput } from '@primer/react';
-import { XCircleFillIcon } from '@primer/octicons-react';
+import { Box, Button, Text, TextInput } from '@primer/react';
+import { TriangleDownIcon, XCircleFillIcon } from '@primer/octicons-react';
 import { Filters } from '../Filters/Filters';
 
 export function FilterBar({ count, empty }) {
@@ -64,6 +64,12 @@ export function FilterBar({ count, empty }) {
             </Box>
           )}
         </Box>
+        <Button
+          sx={{ ml: 2 }}
+          trailingAction={TriangleDownIcon}
+        >
+          Sort by: Recent
+        </Button>
       </Box>
     </>
   );

@@ -80,8 +80,7 @@ export function RouteLog() {
                       fontWeight: 400,
                     }}
                   >
-                    {`Last used ${row.time.split(' ')[3]}`}
-                    {/* {row.time.split(' ')[1]} */}
+                    {`Last used ${row.group}`}
                   </Text>
                 </Box>
               ),
