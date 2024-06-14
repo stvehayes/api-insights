@@ -116,7 +116,7 @@ export function Filters({ count, empty }) {
         <div data-testid='inner'>
           <Dialog.Header
             sx={{ bg: 'canvas.default' }}
-            id='header'
+            id='filters-header'
           >
             Advanced filters
           </Dialog.Header>
@@ -124,6 +124,7 @@ export function Filters({ count, empty }) {
           <Box p={3}>
             {filters.map((filter, index) => (
               <Box
+                key={index}
                 sx={{
                   fontSize: 1,
                   display: 'flex',

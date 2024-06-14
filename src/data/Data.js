@@ -68,7 +68,9 @@ export const trends = [
 
 export const accessTokens = [
   {
-    name: 'token-name-1',
+    name: 'jira',
+    username: 'sarahsmith',
+    avatar: 'https://randomuser.me/api/portraits/thumb/women/70.jpg',
     type: 'Personal Access Token',
     expires: 24,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -86,7 +88,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-2',
+    name: 'slack',
+    username: 'mikejohnson',
+    avatar: 'https://randomuser.me/api/portraits/thumb/men/49.jpg',
     type: 'GitHub App',
     expires: 100,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -104,7 +108,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-3',
+    name: 'circle-ci',
+    username: 'emilyclark',
+    avatar: 'https://randomuser.me/api/portraits/thumb/women/26.jpg',
     type: 'OAuth App',
     expires: 13,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -122,7 +128,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-4',
+    name: 'personal-token',
+    username: 'davidharris',
+    avatar: 'https://randomuser.me/api/portraits/thumb/men/10.jpg',
     type: 'Personal Access Token',
     expires: 100,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -140,7 +148,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-5',
+    name: 'azure-devops',
+    username: 'lisamartin',
+    avatar: 'https://randomuser.me/api/portraits/thumb/women/19.jpg',
     type: 'GitHub App',
     expires: 100,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -158,7 +168,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-6',
+    name: 'snyk',
+    username: 'jamesbrown',
+    avatar: 'https://randomuser.me/api/portraits/thumb/men/14.jpg',
     type: 'Personal Access Token',
     expires: 24,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -176,7 +188,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-7',
+    name: 'imgbot',
+    username: 'katiedavis',
+    avatar: 'https://randomuser.me/api/portraits/thumb/women/40.jpg',
     type: 'GitHub App',
     expires: 0,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -194,7 +208,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-8',
+    name: 'gitguardian',
+    username: 'robtaylor',
+    avatar: 'https://randomuser.me/api/portraits/thumb/men/7.jpg',
     type: 'OAuth App',
     expires: 100,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -212,7 +228,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-9',
+    name: 'codecov',
+    username: 'amandabrown',
+    avatar: 'https://randomuser.me/api/portraits/thumb/women/54.jpg',
     type: 'Personal Access Token',
     expires: 100,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -230,7 +248,9 @@ export const accessTokens = [
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'token-name-10',
+    name: 'codacy',
+    username: 'markwest',
+    avatar: 'https://randomuser.me/api/portraits/thumb/men/44.jpg',
     type: 'GitHub App',
     expires: 100,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
@@ -307,15 +327,21 @@ export const timeIncrements = [
   },
 ];
 
+const date = new Date();
+const month = date.toLocaleString('default', { month: 'short' });
+const day = date.getDate();
+const year = date.getFullYear();
+
 export const requestLog = [
   {
     name: 'token-name',
     type: 'GET',
     path: 'repositories/43215678/releases',
-    route: 'repositories/:repository_id/releases',
+    group: `${month} ${day}, ${year}`,
+    time: '00:00 – 01:00',
+    route: 'repositories/:repository_id',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 9, 2024 1:13pm',
     ip: '192.1.0.1',
     repository: 'octocat/hello-world',
     error: 'Requests exceeded',
@@ -323,11 +349,12 @@ export const requestLog = [
   {
     name: 'other-token-name',
     type: 'POST',
+    group: `${month} ${day}, ${year}`,
+    time: '01:00 – 02:00',
     path: 'repositories/43215678/releases',
-    route: 'repositories/:repository_id/releases',
+    route: 'repositories/:repository_id/issues',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 8, 2024 1:09pm',
     ip: '192.1.0.1',
     repository: 'octocat/hello-world',
     error: 'Requests exceeded',
@@ -335,11 +362,12 @@ export const requestLog = [
   {
     name: 'third-token-name',
     type: 'PUT',
+    group: `${month} ${day}, ${year}`,
+    time: '02:00 – 03:00',
     path: 'repositories/87654321/pulls/123',
-    route: 'repositories/:repository_id/pulls/:pull_number',
+    route: 'repositories/:repository_id/releases/latest',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 7, 2024 12:58pm',
     ip: '192.1.0.2',
     repository: 'octocat/cool-project',
     error: 'Requests exceeded',
@@ -347,11 +375,12 @@ export const requestLog = [
   {
     name: 'fourth-token-name',
     type: 'GET',
-    path: 'repositories/98765432/commits',
+    time: '03:00 – 04:00',
+    group: `${month} ${day}, ${year}`,
+    path: 'repositories/:repository_id/check-runs',
     route: 'repositories/:repository_id/commits/*',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 6, 2024 12:55pm',
     ip: '192.1.0.3',
     repository: 'octocat/awesome-repo',
     error: 'Requests exceeded but a much longer name to test',
@@ -359,11 +388,12 @@ export const requestLog = [
   {
     name: 'fifth-token-name',
     type: 'POST',
+    time: '04:00 – 05:00',
+    group: `${month} ${day}, ${year}`,
     path: 'repositories/12345678/pulls/456',
-    route: 'repositories/:repository_id/pulls/:pull_number',
+    route: 'repositories/:repository_id/contents/?*',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 5, 2024 12:45pm',
     ip: '192.1.0.4',
     repository: 'octocat/cool-project',
     error: 'Requests exceeded',
@@ -371,11 +401,12 @@ export const requestLog = [
   {
     name: 'sixth-token-name',
     type: 'GET',
+    time: '05:00 – 06:00',
+    group: `${month} ${day}, ${year}`,
     path: 'repositories/87654321/commits',
-    route: 'repositories/:repository_id/commits/*',
+    route: 'repositories/:repository_id/pulls',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 4, 2024 12:25pm',
     ip: '192.1.0.5',
     repository: 'octocat/awesome-repo',
     error: 'Requests exceeded',
@@ -383,11 +414,12 @@ export const requestLog = [
   {
     name: 'seventh-token-name',
     type: 'POST',
+    time: '06:00 – 07:00',
+    group: `${month} ${day}, ${year}`,
     path: 'repositories/12345678/pulls/789',
-    route: 'repositories/:repository_id/pulls/:pull_number',
+    route: 'repositories/:repository_id/releases',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 3, 2024 12:24pm',
     ip: '192.1.0.6',
     repository: 'octocat/cool-project',
     error: 'Requests exceeded',
@@ -395,11 +427,12 @@ export const requestLog = [
   {
     name: 'eighth-token-name',
     type: 'GET',
+    time: '07:00 – 08:00',
+    group: `${month} ${day}, ${year}`,
     path: 'repositories/98765432/commits',
-    route: 'repositories/:repository_id/commits/*',
+    route: 'repositories/:repository_id/contents/?*',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 2, 2024 11:55am',
     ip: '192.1.0.7',
     repository: 'octocat/awesome-repo',
     error: 'Requests exceeded',
@@ -407,11 +440,12 @@ export const requestLog = [
   {
     name: 'ninth-token-name',
     type: 'POST',
+    time: '08:00 – 09:00',
+    group: `${month} ${day}, ${year}`,
     path: 'repositories/12345678/pulls/1011',
     route: 'repositories/:repository_id/pulls/:pull_number',
     request: Math.floor(Math.random() * (20000 - 15000 + 1)) + 15000,
     status: 429,
-    time: 'Jun 1, 2024 10:10am',
     ip: '192.1.0.8',
     repository: 'octocat/cool-project',
     error: 'Requests exceeded',

@@ -9,12 +9,11 @@ import { RouteLog } from '../../components/Tables/RouteLog/RouteLog';
 import { TrendCard } from '../../components/TrendCard/TrendCard';
 import { trends } from '../../data/Data';
 import { DataChart } from '../../components/DataChart/DataChart';
-import { calculatePercentage, formatNumber } from '../../util/Helpers';
+import { formatNumber } from '../../util/Helpers';
 import { UnderlineNavItem } from '@primer/react/lib-esm/UnderlineNav/UnderlineNavItem';
-import { format } from 'prettier';
 
 export function SubPage() {
-  const children = ['Request log', 'Routes'];
+  const children = ['Routes', 'Request log'];
   const [currentTab, setCurrentTab] = useState(children[0]);
 
   return (
@@ -40,7 +39,7 @@ export function SubPage() {
               )}
             />
             <DataCard
-              title='Rate limited requests'
+              title='Limited requests'
               description='Amount of requests that were rate limited'
               data={formatNumber(
                 accessTokens.reduce(
@@ -85,8 +84,8 @@ export function SubPage() {
               </UnderlineNavItem>
             ))}
           </UnderlineNav>
-          {currentTab === 'Request log' && <RequestLog />}
           {currentTab === 'Routes' && <RouteLog />}
+          {currentTab === 'Request log' && <RequestLog />}
         </Box>
       </Box>
     </Page>

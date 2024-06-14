@@ -3,6 +3,7 @@ import { DataTable, Table } from '@primer/react/experimental';
 import { requestLog } from '../../../data/Data';
 import { Box, Dialog, Link, Text, Button } from '@primer/react';
 import { FilterBar } from '../../FilterBar/FilterBar';
+import { formatNumber } from '../../../util/Helpers';
 
 export function RequestLog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,10 @@ export function RequestLog() {
       sx={{ width: '100%', mt: 5 }}
       id='requests'
     >
-      <FilterBar count={1} />
+      <FilterBar
+        count={0}
+        empty
+      />
       <Table.Container
         sx={{
           width: '100%',
@@ -56,10 +60,10 @@ export function RequestLog() {
           data={requestLog}
           columns={[
             {
-              header: 'Request',
-              field: 'request',
+              header: 'Time group',
+              field: 'time group[',
               rowHeader: true,
-              renderCell: (row) => (
+              renderCell: (row, index) => (
                 <Box
                   sx={{
                     display: 'flex',
@@ -74,7 +78,6 @@ export function RequestLog() {
                       color: 'fg.default',
                       fontSize: 1,
                       fontWeight: 'semibold',
-                      // mb: 1,
                       cursor: 'pointer',
                       ':hover': {
                         color: 'accent.emphasis',
@@ -82,26 +85,26 @@ export function RequestLog() {
                       },
                     }}
                   >
-                    {/* <Text sx={{ mr: 1 }}>{row.type}</Text> */}
-
-                    <Text sx={{ fontWeight: 'semibold' }}>{row.path}</Text>
+                    <Text sx={{ display: 'block', fontWeight: 'semibold' }}>
+                      {row.time}
+                    </Text>
+                    <Text
+                      sx={{
+                        display: 'block',
+                        color: 'fg.muted',
+                        fontSize: '12px',
+                        fontWeight: 'normal',
+                      }}
+                    >
+                      {row.group}
+                    </Text>
                   </Link>
-                  <Text
-                    sx={{
-                      color: 'fg.muted',
-                      fontWeight: 400,
-                    }}
-                  >
-                    <Text>{row.type}</Text>
-                    {' · '}
-                    {row.ip}
-                  </Text>
                 </Box>
               ),
             },
             {
-              header: 'Status',
-              field: 'status',
+              header: 'Requests',
+              field: 'requests',
               width: '25%',
               renderCell: (row) => (
                 <Box
@@ -109,46 +112,22 @@ export function RequestLog() {
                     display: 'flex',
                     flexDirection: 'column',
                     width: '100%',
+                    py: 2,
                   }}
                 >
-                  <Text sx={{ fontSize: 1 }}>
-                    <Box
-                      sx={{
-                        display: 'inline-block',
-                        bg:
-                          row.status === 200
-                            ? 'success.emphasis'
-                            : 'danger.emphasis',
-                        borderRadius: '12px',
-                        color: 'canvas.default',
-                        width: '8px',
-                        height: '8px',
-                        mr: 2,
-                      }}
-                    />
-                    {row.status || 'Failed'}
-                  </Text>
-                  <Text
-                    sx={{
-                      fontSize: '12px',
-                      color: 'fg.muted',
-                      display: 'block',
-                      textOverflow: 'ellipsis',
-                      overflow: 'hidden',
-                      whiteSpace: 'nowrap',
-                      width: '100%',
-                    }}
-                  >
-                    {row.error}
-                  </Text>
+                  <Text sx={{ fontSize: 1 }}>{formatNumber(row.request)}</Text>
                 </Box>
               ),
             },
             {
-              header: 'Date',
-              field: 'date',
+              header: 'Limited requests',
+              field: 'limited requests',
               width: '25%',
-              renderCell: (row) => <Text sx={{ fontSize: 1 }}>{row.time}</Text>,
+              renderCell: (row) => (
+                <Text sx={{ fontSize: 1 }}>
+                  {formatNumber(row.request * Math.random() * 0.08)}
+                </Text>
+              ),
             },
           ]}
         />

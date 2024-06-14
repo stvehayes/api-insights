@@ -26,7 +26,7 @@ export function AccessTokens() {
             fontSize: 3,
           }}
         >
-          Access tokens
+          Apps & tokens
         </Heading>
         <Text
           sx={{
@@ -34,7 +34,7 @@ export function AccessTokens() {
             fontSize: 1,
           }}
         >
-          View usage by individual token
+          View usage by individual app or token
         </Text>
       </Box>
       {showFlash && (
@@ -75,6 +75,7 @@ export function AccessTokens() {
         </Box>
       )}
       <FilterBar
+        count={1}
         title='Access tokens'
         description='View usage by individual token'
       />
@@ -97,6 +98,7 @@ export function AccessTokens() {
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
+                    cursor: 'pointer',
                   }}
                 >
                   <Link
@@ -118,11 +120,23 @@ export function AccessTokens() {
                       fontWeight: 400,
                     }}
                   >
+                    {(row.type === 'OAuth App' ||
+                      row.type === 'Personal Access Token') && (
+                      <>
+                        <Text>{row.username}</Text>
+                        <Text
+                          mx={1}
+                          as='span'
+                        >
+                          ·
+                        </Text>
+                      </>
+                    )}
                     {row.type}
                     {row.expires === 0 && (
                       <>
                         <Text
-                          mx={2}
+                          mx={1}
                           as='span'
                         >
                           ·
@@ -135,22 +149,6 @@ export function AccessTokens() {
                         </Text>
                       </>
                     )}
-                    {row.expires >= 1 && row.expires <= 14 ? (
-                      <>
-                        <Text
-                          mx={2}
-                          as='span'
-                        >
-                          ·
-                        </Text>
-                        <Text
-                          sx={{ color: 'attention.emphasis' }}
-                          as='span'
-                        >
-                          Expires in {row.expires} days
-                        </Text>
-                      </>
-                    ) : null}
                   </Text>
                 </Box>
               ),
@@ -184,7 +182,7 @@ export function AccessTokens() {
               ),
             },
             {
-              header: 'Last rate limited',
+              header: 'Last limited',
               field: 'updatedAt',
               width: smallRowWidth,
               renderCell: (row) => (

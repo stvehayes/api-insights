@@ -2,6 +2,7 @@ import { ThemeProvider, BaseStyles, Box } from '@primer/react';
 import { Navigation } from './components/Navigation/Navigation';
 import { SideNav } from './components/SideNav/SideNav';
 import { Home } from './pages/Home/Home';
+import { CurrentTokenProvider } from './context/CurrentTokenContext';
 
 function App() {
   return (
