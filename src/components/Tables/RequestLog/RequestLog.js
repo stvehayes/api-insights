@@ -86,9 +86,9 @@ export function RequestLog() {
                     }}
                   >
                     <Text sx={{ display: 'block', fontWeight: 'semibold' }}>
-                      {row.time}
+                      {row.group} · {row.time}
                     </Text>
-                    <Text
+                    {/* <Text
                       sx={{
                         display: 'block',
                         color: 'fg.muted',
@@ -97,7 +97,7 @@ export function RequestLog() {
                       }}
                     >
                       {row.group}
-                    </Text>
+                    </Text> */}
                   </Link>
                 </Box>
               ),
