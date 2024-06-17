@@ -1,7 +1,9 @@
 import { Avatar, Box, Heading, NavList, Text } from '@primer/react';
 import {
+  AppsIcon,
   ChecklistIcon,
   CreditCardIcon,
+  DownloadIcon,
   GearIcon,
   GitPullRequestIcon,
   HomeIcon,
@@ -62,52 +64,26 @@ export function SideNav() {
       text: 'Billing',
       selected: false,
     },
+
     {
-      icon: <GearIcon />,
-      text: 'Settings',
+      icon: <AppsIcon />,
+      text: 'Apps',
       selected: true,
       subnav: [
         {
-          text: 'Profile',
-          selected: false,
-        },
-        {
-          text: 'Billing',
-          selected: false,
-        },
-        {
-          text: 'Authentication security',
-          selected: false,
-        },
-        {
-          text: 'Code security & analysis',
-          selected: false,
-        },
-        {
           text: 'Installations',
+          selected: false,
+        },
+        {
+          text: 'API usage',
           selected: true,
         },
-        {
-          text: 'Audit log',
-          selected: false,
-        },
-        {
-          text: 'Hooks',
-          selected: false,
-        },
-        {
-          text: 'Hosted compute networking',
-          selected: false,
-        },
-        {
-          text: 'Announcements',
-          selected: false,
-        },
-        {
-          text: 'Support',
-          selected: false,
-        },
       ],
+    },
+    {
+      icon: <GearIcon />,
+      text: 'Settings',
+      selected: false,
     },
     {
       icon: <ChecklistIcon />,
