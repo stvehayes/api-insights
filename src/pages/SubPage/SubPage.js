@@ -40,6 +40,7 @@ export function SubPage() {
             />
             <DataCard
               title='Limited requests'
+              hasChart
               description='Amount of requests that were rate limited'
               data={formatNumber(
                 accessTokens.reduce(

@@ -1,8 +1,22 @@
-import { Box, Button, Text, TextInput } from '@primer/react';
+import {
+  ActionMenu,
+  ActionList,
+  Box,
+  Button,
+  Text,
+  TextInput,
+} from '@primer/react';
 import { TriangleDownIcon, XCircleFillIcon } from '@primer/octicons-react';
 import { Filters } from '../Filters/Filters';
 
 export function FilterBar({ count, empty }) {
+  const filters = [
+    { name: 'Recent', selected: true },
+    {
+      name: 'Most rate limited',
+      selected: false,
+    },
+  ];
   return (
     <>
       <Box
@@ -64,12 +78,26 @@ export function FilterBar({ count, empty }) {
             </Box>
           )}
         </Box>
-        <Button
-          sx={{ ml: 2 }}
-          trailingAction={TriangleDownIcon}
-        >
-          Sort by: Recent
-        </Button>
+        <ActionMenu>
+          <ActionMenu.Button sx={{ ml: 2 }}>
+            <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
+              Sort by:
+            </Box>{' '}
+            Recent
+          </ActionMenu.Button>{' '}
+          <ActionMenu.Overlay align='end'>
+            <ActionList selectionVariant='single'>
+              {filters.map((filter, index) => (
+                <ActionList.Item
+                  selected={filter.selected}
+                  key={filter.index}
+                >
+                  {filter.name}
+                </ActionList.Item>
+              ))}
+            </ActionList>
+          </ActionMenu.Overlay>
+        </ActionMenu>
       </Box>
     </>
   );

@@ -38,6 +38,7 @@ export function Home() {
           />
           <DataCard
             title='Rate limited requests'
+            hasChart
             description='Amount of requests that were rate limited'
             data={formatNumber(
               accessTokens.reduce(

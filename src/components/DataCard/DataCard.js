@@ -1,6 +1,9 @@
 import { Box, Heading, Text } from '@primer/react';
 
-export function DataCard({ data, description, title }) {
+export function DataCard({ data, description, title, hasChart }) {
+  const primaryColor = 'accent.emphasis';
+  const secondaryColor = 'done.emphasis';
+
   return (
     <Box
       sx={{
@@ -11,31 +14,129 @@ export function DataCard({ data, description, title }) {
         border: '1px solid',
         borderColor: 'border.default',
         width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       }}
     >
-      <Heading
-        sx={{
-          fontSize: 1,
-        }}
-      >
-        {title}
-      </Heading>
-      <Text
-        sx={{
-          fontSize: 4,
-          display: 'block',
-        }}
-      >
-        {data}
-      </Text>
-      <Text
-        sx={{
-          color: 'fg.muted',
-          fontSize: 1,
-        }}
-      >
-        {description}
-      </Text>
+      <Box>
+        <Heading
+          sx={{
+            fontSize: 1,
+          }}
+        >
+          {title}
+        </Heading>
+        <Text
+          sx={{
+            fontSize: 4,
+            display: 'block',
+          }}
+        >
+          {data}
+        </Text>
+      </Box>
+
+      {hasChart && (
+        <>
+          <Box
+            sx={{
+              height: '6px',
+              width: '100%',
+              borderRadius: 2,
+              overflow: 'hidden',
+              bg: secondaryColor,
+              mt: 2,
+            }}
+          >
+            <Box
+              sx={{
+                bg: primaryColor,
+                borderRight: '2px solid',
+                borderColor: 'canvas.default',
+                width: '93%',
+                height: '100%',
+              }}
+            />
+          </Box>
+          <Box sx={{ display: 'flex', gap: 3 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                mt: 1,
+                fontSize: 0,
+                gap: 1,
+              }}
+            >
+              <Box
+                sx={{
+                  bg: primaryColor,
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: 2,
+                  display: 'inline-block',
+                  margin: 'auto 0',
+                }}
+              />
+              <Text
+                sx={{
+                  fontWeight: 'bold',
+                }}
+              >
+                Primary{' '}
+                <Text
+                  as='span'
+                  sx={{ fontWeight: 'normal' }}
+                >
+                  3.4k
+                </Text>
+              </Text>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                mt: 1,
+                fontSize: 0,
+                gap: 1,
+              }}
+            >
+              <Box
+                sx={{
+                  bg: secondaryColor,
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: 2,
+                  display: 'inline-block',
+                  margin: 'auto 0',
+                }}
+              />
+              <Text
+                sx={{
+                  fontWeight: 'bold',
+                }}
+              >
+                Secondary{' '}
+                <Text
+                  as='span'
+                  sx={{ fontWeight: 'normal' }}
+                >
+                  240
+                </Text>
+              </Text>
+            </Box>
+          </Box>
+        </>
+      )}
+      {!hasChart && (
+        <Text
+          sx={{
+            color: 'fg.muted',
+            fontSize: 1,
+          }}
+        >
+          {description}
+        </Text>
+      )}
     </Box>
   );
 }
