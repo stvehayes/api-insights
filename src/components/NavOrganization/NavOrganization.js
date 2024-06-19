@@ -27,8 +27,9 @@ export function NavOrganization() {
   return (
     <Box
       sx={{
-        width: '350px',
+        width: '325px',
         height: '100%',
+        flexShrink: 0,
         p: 4,
       }}
     >
