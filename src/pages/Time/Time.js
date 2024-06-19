@@ -13,6 +13,7 @@ import { formatNumber } from '../../util/Helpers';
 import { UnderlineNavItem } from '@primer/react/lib-esm/UnderlineNav/UnderlineNavItem';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { TimeGroup } from '../../components/Tables/TimeGroup/TimeGroup';
+import { datetime } from '@primer/react/lib-esm/DataTable/sorting';
 
 export function Time() {
   const children = ['Request log', 'Routes'];
@@ -35,7 +36,11 @@ export function Time() {
                 current: false,
               },
               {
-                text: '1:00am – 2:00am',
+                text: `${new Date().toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })} · 1:00am – 2:00am`,
                 href: '/',
                 current: true,
               },
