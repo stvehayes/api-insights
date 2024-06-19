@@ -25,7 +25,7 @@ import {
   Text,
 } from '@primer/react';
 
-export function Navigation() {
+export function Navigation({ enterprise }) {
   const src = 'https://avatars.githubusercontent.com/u/13389614?v=4';
   const style = {
     color: 'fg.muted',
@@ -68,8 +68,8 @@ export function Navigation() {
         sx={{
           display: 'flex',
           bg: 'canvas.subtle',
-          borderBottom: '1px solid',
-          borderColor: 'border.default',
+          border: enterprise ? '1px solid' : null,
+          borderColor: enterprise ? 'border.default' : null,
           p: 3,
           justifyContent: 'space-between',
         }}
@@ -135,24 +135,26 @@ export function Navigation() {
           />
         </Box>
       </Box>
-      {/* <Box
-        sx={{
-          bg: 'canvas.subtle',
-        }}
-      >
-        <UnderlineNav aria-label='Repository'>
-          {children.map((child, index) => (
-            <UnderlineNav.Item
-              icon={child.icon}
-              key={index}
-              href='#'
-              aria-current={index === 5 ? 'page' : undefined}
-            >
-              {child.name}
-            </UnderlineNav.Item>
-          ))}
-        </UnderlineNav>
-      </Box> */}
+      {!enterprise && (
+        <Box
+          sx={{
+            bg: 'canvas.subtle',
+          }}
+        >
+          <UnderlineNav aria-label='Repository'>
+            {children.map((child, index) => (
+              <UnderlineNav.Item
+                icon={child.icon}
+                key={index}
+                href='#'
+                aria-current={index === 5 ? 'page' : undefined}
+              >
+                {child.name}
+              </UnderlineNav.Item>
+            ))}
+          </UnderlineNav>
+        </Box>
+      )}
     </Box>
   );
 }

@@ -6,7 +6,7 @@ export function Footer() {
     <Box
       sx={{
         p: 4,
-
+        bg: 'canvas.default',
         fontSize: 1,
         color: 'fg.muted',
         borderTop: '1px solid',

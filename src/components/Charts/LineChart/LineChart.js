@@ -80,7 +80,7 @@ export function LineChart() {
             />
             <Text
               sx={{
-                fontSize: '12px',
+                fontSize: 0,
               }}
             >
               {label.name}

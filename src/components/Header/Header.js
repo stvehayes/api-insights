@@ -42,7 +42,8 @@ export function Header() {
       >
         <Box sx={{ width: '100%' }}>
           <Heading sx={{ fontSize: 3, display: 'inline' }}>
-            {location === '/' ? 'API' : <Link href='/'>API</Link>}
+            API usage
+            {/* {location === '/' ? 'API' : <Link href='/'>API</Link>}
             {location === '/' ? null : (
               <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
                 <Text
@@ -62,14 +63,10 @@ export function Header() {
                 >
                   token-name
                 </Text>
-                {/* <Label
-                  variant='secondary'
-                  sx={{ ml: 2, mt: '2px' }}
-                >
-                  OAuth App
-                </Label> */}
+
               </Box>
             )}
+            */}
           </Heading>
         </Box>
         <ActionMenu>

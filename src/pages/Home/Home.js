@@ -46,6 +46,10 @@ export function Home() {
                 0
               )
             )}
+            rateLimitedRequests={accessTokens.reduce(
+              (sum, item) => sum + item.rateLimitedRequests / 3,
+              0
+            )}
           />
         </Box>
         <DataChart />

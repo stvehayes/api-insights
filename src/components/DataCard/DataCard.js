@@ -1,8 +1,18 @@
 import { Box, Heading, Text } from '@primer/react';
+import { formatNumber } from '../../util/Helpers';
 
-export function DataCard({ data, description, title, hasChart }) {
-  const primaryColor = 'accent.emphasis';
-  const secondaryColor = 'done.emphasis';
+export function DataCard({
+  data,
+  description,
+  title,
+  hasChart,
+  rateLimitedRequests,
+}) {
+  const primaryColor = 'danger.emphasis';
+  const secondaryColor = 'attention.emphasis';
+
+  const primaryRequests = rateLimitedRequests * 0.93;
+  const secondaryRequests = rateLimitedRequests - primaryRequests;
 
   return (
     <Box
@@ -88,7 +98,7 @@ export function DataCard({ data, description, title, hasChart }) {
                   as='span'
                   sx={{ fontWeight: 'normal' }}
                 >
-                  3.4k
+                  {formatNumber(primaryRequests)}
                 </Text>
               </Text>
             </Box>
@@ -120,7 +130,7 @@ export function DataCard({ data, description, title, hasChart }) {
                   as='span'
                   sx={{ fontWeight: 'normal' }}
                 >
-                  240
+                  {formatNumber(secondaryRequests)}
                 </Text>
               </Text>
             </Box>

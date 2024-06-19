@@ -20,6 +20,10 @@ export function RequestLog() {
     setIsOpen(false);
   };
 
+  const filteredRequestLog = requestLog.filter(
+    (row) => row.wasRateLimited === true
+  );
+
   const label = {
     width: '130px',
     fontWeight: 'semibold',
@@ -47,17 +51,14 @@ export function RequestLog() {
       sx={{ width: '100%', mt: 5 }}
       id='requests'
     >
-      <FilterBar
-        count={0}
-        empty
-      />
+      <FilterBar count={1} />
       <Table.Container
         sx={{
           width: '100%',
         }}
       >
         <DataTable
-          data={requestLog}
+          data={filteredRequestLog}
           columns={[
             {
               header: 'Time group',
@@ -73,7 +74,7 @@ export function RequestLog() {
                   <Link
                     data-testid='trigger-button'
                     ref={returnFocusRef}
-                    onClick={() => openModal(row)}
+                    href='/time-group'
                     sx={{
                       color: 'fg.default',
                       fontSize: 1,
@@ -88,16 +89,6 @@ export function RequestLog() {
                     <Text sx={{ display: 'block', fontWeight: 'semibold' }}>
                       {row.group} · {row.time}
                     </Text>
-                    {/* <Text
-                      sx={{
-                        display: 'block',
-                        color: 'fg.muted',
-                        fontSize: '12px',
-                        fontWeight: 'normal',
-                      }}
-                    >
-                      {row.group}
-                    </Text> */}
                   </Link>
                 </Box>
               ),
@@ -120,8 +111,8 @@ export function RequestLog() {
               ),
             },
             {
-              header: 'Limited requests',
-              field: 'limited requests',
+              header: 'Rate limited requests',
+              field: 'rate limited requests',
               width: '25%',
               renderCell: (row) => (
                 <Text sx={{ fontSize: 1 }}>

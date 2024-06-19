@@ -4,7 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './reset.css';
 import { Home } from './pages/Home/Home';
-import { SubPage } from './pages/SubPage/SubPage';
+import { App } from './pages/App/App';
+import { Time } from './pages/Time/Time';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/token-name',
-    element: <SubPage />,
+    element: <App />,
+  },
+  {
+    path: '/time-group',
+    element: <Time />,
   },
 ]);
 

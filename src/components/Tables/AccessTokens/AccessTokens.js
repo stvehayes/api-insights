@@ -8,7 +8,7 @@ import { FilterBar } from '../../FilterBar/FilterBar';
 
 export function AccessTokens() {
   const smallRowWidth = '20%';
-  const [showFlash, setShowFlash] = useState(true);
+  const [showFlash, setShowFlash] = useState(!true);
 
   return (
     <Box sx={{ width: '100%', mt: 5 }}>
