@@ -1,5 +1,67 @@
 export const enterprise = !true;
 
+export const timePeriods = [
+  {
+    type: 'Last 30 minutes',
+    selected: false,
+  },
+  {
+    type: 'Last hour',
+    selected: false,
+  },
+  {
+    type: 'Last 3 hours',
+    selected: true,
+  },
+  {
+    type: 'Last 12 hours',
+    selected: false,
+  },
+  {
+    type: 'Last 24 hours',
+    selected: false,
+  },
+  {
+    type: 'Last week',
+    selected: false,
+  },
+  {
+    type: 'Last month',
+    selected: false,
+  },
+];
+
+export const timeIncrements = [
+  {
+    type: '5 minute',
+    selected: false,
+  },
+  {
+    type: '10 minutes',
+    selected: false,
+  },
+  {
+    type: '30 minutes',
+    selected: false,
+  },
+  {
+    type: '1 hour',
+    selected: true,
+  },
+  {
+    type: '3 hours',
+    selected: false,
+  },
+  {
+    type: '12 hours',
+    selected: false,
+  },
+  {
+    type: '24 hours',
+    selected: false,
+  },
+];
+
 export const accessTokens = [
   {
     name: 'jira',
@@ -268,64 +330,6 @@ export const trends = [
         count: '1.0k',
       },
     ],
-  },
-];
-
-export const timePeriods = [
-  {
-    type: 'Last hour',
-    selected: false,
-  },
-  {
-    type: 'Last 3 hours',
-    selected: false,
-  },
-  {
-    type: 'Last 12 hours',
-    selected: true,
-  },
-  {
-    type: 'Last 24 hours',
-    selected: false,
-  },
-  {
-    type: 'Last week',
-    selected: false,
-  },
-  {
-    type: 'Last month',
-    selected: false,
-  },
-];
-
-export const timeIncrements = [
-  {
-    type: '1 minute',
-    selected: false,
-  },
-  {
-    type: '10 minutes',
-    selected: false,
-  },
-  {
-    type: '30 minutes',
-    selected: false,
-  },
-  {
-    type: '1 hour',
-    selected: true,
-  },
-  {
-    type: '3 hours',
-    selected: false,
-  },
-  {
-    type: '12 hours',
-    selected: false,
-  },
-  {
-    type: '24 hours',
-    selected: false,
   },
 ];
 

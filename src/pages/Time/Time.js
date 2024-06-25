@@ -10,14 +10,11 @@ import { TrendCard } from '../../components/TrendCard/TrendCard';
 import { trends } from '../../data/Data';
 import { DataChart } from '../../components/DataChart/DataChart';
 import { formatNumber } from '../../util/Helpers';
-import { UnderlineNavItem } from '@primer/react/lib-esm/UnderlineNav/UnderlineNavItem';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { TimeGroup } from '../../components/Tables/TimeGroup/TimeGroup';
-import { datetime } from '@primer/react/lib-esm/DataTable/sorting';
 
 export function Time() {
   const children = ['Request log', 'Routes'];
-  const [currentTab, setCurrentTab] = useState(children[0]);
 
   return (
     <Page>
