@@ -26,7 +26,7 @@ export function AccessTokens() {
             fontSize: 3,
           }}
         >
-          Apps & tokens
+          API clients
         </Heading>
         <Text
           sx={{
@@ -34,7 +34,7 @@ export function AccessTokens() {
             fontSize: 1,
           }}
         >
-          View usage by individual app or token
+          View usage by individual API client
         </Text>
       </Box>
       {showFlash && (
@@ -54,7 +54,7 @@ export function AccessTokens() {
                 ml: 2,
               }}
             >
-              You have expired tokens causing requests to be rate limited. Visit{' '}
+              You have expired tokens causing requests to be rate-limited. Visit{' '}
               <Link href='/'>Developer Settings</Link> to renew it.
             </Box>
             <Box
@@ -77,7 +77,7 @@ export function AccessTokens() {
       <FilterBar
         count={1}
         title='Access tokens'
-        description='View usage by individual token'
+        description='View usage by individual API client'
       />
       <Table.Container
         sx={{
@@ -168,7 +168,7 @@ export function AccessTokens() {
               ),
             },
             {
-              header: 'Rate limited requests',
+              header: 'Rate-limited requests',
               field: 'type',
               width: smallRowWidth,
               renderCell: (row) => (

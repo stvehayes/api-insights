@@ -42,7 +42,7 @@ export function Header() {
       >
         <Box sx={{ width: '100%' }}>
           <Heading sx={{ fontSize: 3, display: 'inline' }}>
-            API usage
+            API insights
             {/* {location === '/' ? 'API' : <Link href='/'>API</Link>}
             {location === '/' ? null : (
               <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>

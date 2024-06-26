@@ -110,7 +110,7 @@ export function TimeGroup() {
               ),
             },
             {
-              header: 'Rate limited requests',
+              header: 'Rate-limited requests',
               field: 'date',
               width: '25%',
               renderCell: (row) => (

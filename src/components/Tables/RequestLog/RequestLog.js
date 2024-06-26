@@ -111,8 +111,8 @@ export function RequestLog() {
               ),
             },
             {
-              header: 'Rate limited requests',
-              field: 'rate limited requests',
+              header: 'Rate-limited requests',
+              field: 'rate-limited requests',
               width: '25%',
               renderCell: (row) => (
                 <Text sx={{ fontSize: 1 }}>

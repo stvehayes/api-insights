@@ -10,7 +10,7 @@ export function LineChart() {
       color: 'success.emphasis',
     },
     {
-      name: 'Rate limited requests',
+      name: 'Rate-limited requests',
       color: 'severe.emphasis',
     },
   ];
@@ -34,7 +34,7 @@ export function LineChart() {
         pointHoverBackgroundColor: '#2DA44E',
       },
       {
-        label: 'Rate limited requests',
+        label: 'Rate-limited requests',
         data: Data.map((data) => data.requestsFailed),
         fill: true,
         borderColor: '#E16F24',

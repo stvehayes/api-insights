@@ -13,7 +13,7 @@ export function FilterBar({ count, empty }) {
   const filters = [
     { name: 'Recent', selected: true },
     {
-      name: 'Most rate limited',
+      name: 'Most rate-limited',
       selected: false,
     },
   ];
@@ -64,7 +64,7 @@ export function FilterBar({ count, empty }) {
                 display: 'flex',
               }}
             >
-              <Text>rate limited:</Text>
+              <Text>rate-limited:</Text>
               <Text
                 sx={{
                   bg: 'accent.subtle',
