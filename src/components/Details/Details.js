@@ -44,7 +44,7 @@ export function Details({ username, avatar, type, limit }) {
         </Link>
       </Box>
       <Box>
-        <Text sx={label}>Limit:</Text>
+        <Text sx={label}>Current limit:</Text>
         <Text sx={description}>{limit || '15,000 / hour'}</Text>
       </Box>
     </Box>
