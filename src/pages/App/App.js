@@ -14,7 +14,7 @@ import { UnderlineNavItem } from '@primer/react/lib-esm/UnderlineNav/UnderlineNa
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 
 export function App() {
-  const children = ['Request log', 'Routes'];
+  const children = ['Requests', 'Routes'];
   const [currentTab, setCurrentTab] = useState(children[0]);
 
   return (
@@ -105,7 +105,7 @@ export function App() {
             ))}
           </UnderlineNav>
           {currentTab === 'Routes' && <RouteLog />}
-          {currentTab === 'Request log' && <RequestLog />}
+          {currentTab === 'Requests' && <RequestLog />}
         </Box>
       </Box>
     </Page>

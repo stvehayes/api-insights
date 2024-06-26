@@ -21,8 +21,8 @@ export function Filters({ count, empty }) {
       name: 'Type',
       options: [
         { label: 'Personal Access Token', value: 'pat' },
-        { label: 'GitHub App', value: 'github' },
-        { label: 'OAuth App', value: 'oauth' },
+        { label: 'GitHub app', value: 'github' },
+        { label: 'OAuth app', value: 'oauth' },
       ],
       operator: 'is',
       icon: KeyAsteriskIcon,

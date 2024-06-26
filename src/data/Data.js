@@ -107,7 +107,7 @@ export const accessTokens = [
     name: 'circle-ci',
     username: 'emilyclark',
     avatar: 'https://randomuser.me/api/portraits/thumb/women/26.jpg',
-    type: 'OAuth App',
+    type: 'OAuth app',
     expires: 13,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
       .toLocaleString('en-US', {
@@ -188,7 +188,7 @@ export const accessTokens = [
     username: 'katiedavis',
     avatar: 'https://randomuser.me/api/portraits/thumb/women/40.jpg',
     type: 'GitHub App',
-    expires: 0,
+    expires: 100,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
       .toLocaleString('en-US', {
         month: 'short',
@@ -207,7 +207,7 @@ export const accessTokens = [
     name: 'gitguardian',
     username: 'robtaylor',
     avatar: 'https://randomuser.me/api/portraits/thumb/men/7.jpg',
-    type: 'OAuth App',
+    type: 'OAuth app',
     expires: 100,
     lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
       .toLocaleString('en-US', {

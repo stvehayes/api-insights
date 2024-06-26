@@ -22,7 +22,7 @@ export function Details({ username, avatar, type, limit }) {
     >
       <Box>
         <Text sx={label}>Type:</Text>
-        <Text sx={description}>{type || 'OAuth App'}</Text>
+        <Text sx={description}>{type || 'OAuth app'}</Text>
       </Box>
       <Box>
         <Text sx={label}>Owner:</Text>

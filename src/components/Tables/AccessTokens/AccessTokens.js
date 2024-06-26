@@ -182,7 +182,7 @@ export function AccessTokens() {
               ),
             },
             {
-              header: 'Last limited',
+              header: 'Last rate-limited',
               field: 'updatedAt',
               width: smallRowWidth,
               renderCell: (row) => (
