@@ -28,6 +28,7 @@ export function NavOrganization() {
     <Box
       sx={{
         width: '325px',
+        display: ['none', null, 'block'],
         height: '100%',
         flexShrink: 0,
         p: 4,

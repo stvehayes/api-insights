@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   ActionMenu,
   ActionList,
@@ -10,20 +10,17 @@ import {
 import { timePeriods, timeIncrements } from '../../data/Data';
 import { useLocation } from 'react-router-dom';
 import { Details } from '../Details/Details';
+import { IncrementContext } from '../../context/IncrementContext';
+import { PeriodContext } from '../../context/PeriodContext';
+import { convertMinutes } from '../../util/Helpers';
 
 export function Header() {
   const location = useLocation().pathname;
   const [selectedIndex, setSelectedIndex] = useState(2);
   const [selectedIncrementIndex, setSelectedIncrementIndex] = useState(3);
-
-  const timePeriod = [
-    { type: 'Last hour' },
-    { type: 'Last 3 hours' },
-    { type: 'Last 12 hours' },
-    { type: 'Last 24 hours' },
-    { type: 'Last week' },
-    { type: 'Last month' },
-  ];
+  const { selectedIncrement, setSelectedIncrement } =
+    useContext(IncrementContext);
+  const { selectedPeriod, setSelectedPeriod } = useContext(PeriodContext);
 
   return (
     <>
@@ -74,15 +71,16 @@ export function Header() {
             <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
               Period:
             </Box>{' '}
-            {timePeriod[selectedIndex].type}
+            {convertMinutes(selectedPeriod)}
           </ActionMenu.Button>{' '}
           <ActionMenu.Overlay align='end'>
             <ActionList selectionVariant='single'>
               {timePeriods.map((period, index) => (
                 <ActionList.Item
                   key={index}
-                  selected={index === selectedIndex}
-                  onSelect={() => setSelectedIndex(index)}
+                  selected={period.value === selectedPeriod}
+                  onSelect={() => setSelectedPeriod(period.value)}
+                  value={period.value}
                 >
                   {period.type}
                 </ActionList.Item>
@@ -99,15 +97,16 @@ export function Header() {
             <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
               Increment:
             </Box>{' '}
-            {timeIncrements[selectedIncrementIndex].type}
+            {convertMinutes(selectedIncrement)}
           </ActionMenu.Button>
           <ActionMenu.Overlay align='end'>
             <ActionList selectionVariant='single'>
               {timeIncrements.map((period, index) => (
                 <ActionList.Item
                   key={index}
-                  selected={index === selectedIncrementIndex}
-                  onSelect={() => setSelectedIncrementIndex(index)}
+                  selected={period.value === selectedIncrement}
+                  disabled={period.value > selectedPeriod}
+                  onSelect={() => setSelectedIncrement(period.value)}
                 >
                   {period.type}
                 </ActionList.Item>

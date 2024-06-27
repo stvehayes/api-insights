@@ -1,4 +1,14 @@
-import { Avatar, Box, Link, Text } from '@primer/react';
+import { useState, useRef } from 'react';
+import {
+  Avatar,
+  Box,
+  Button,
+  Dialog,
+  Heading,
+  Link,
+  Text,
+} from '@primer/react';
+import { formatNumber } from '../../util/Helpers';
 
 export function Details({ username, avatar, type, limit }) {
   const label = {
@@ -11,6 +21,27 @@ export function Details({ username, avatar, type, limit }) {
   const description = {
     fontSize: 1,
   };
+
+  const [isOpen, setIsOpen] = useState(false);
+  const returnFocusRef = useRef(null);
+
+  const contributors = [
+    {
+      name: 'JIRA',
+      type: 'OAuth app',
+      requests: 4700,
+    },
+    {
+      name: 'Slack',
+      type: 'OAuth app',
+      requests: 2100,
+    },
+    {
+      name: 'stvehayes-pat',
+      type: 'Personal Access Token',
+      requests: 1000,
+    },
+  ];
 
   return (
     <Box
@@ -47,6 +78,73 @@ export function Details({ username, avatar, type, limit }) {
         <Text sx={label}>Current limit:</Text>
         <Text sx={description}>{limit || '15,000 / hour'}</Text>
       </Box>
+      <Box>
+        <Text sx={label}>Contibutors:</Text>
+        <Link
+          sx={{ cursor: 'pointer' }}
+          data-testid='trigger-button'
+          ref={returnFocusRef}
+          onClick={() => setIsOpen(true)}
+        >
+          <Text sx={description}>{limit || '3 others'}</Text>
+        </Link>
+      </Box>
+      <Dialog
+        returnFocusRef={returnFocusRef}
+        isOpen={isOpen}
+        onDismiss={() => setIsOpen(false)}
+        aria-labelledby='header'
+        subtitle='Subtitle'
+      >
+        <div data-testid='inner'>
+          <Dialog.Header
+            subtitle='Subtitle'
+            id='header'
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              bg: 'canvas.default',
+            }}
+          >
+            <Heading sx={{ fontSize: 1, display: 'block' }}>
+              Contributors
+            </Heading>
+            <Text
+              sx={{
+                color: 'fg.muted',
+                fontSize: 0,
+              }}
+            >
+              API clients contributing to overall limit
+            </Text>
+          </Dialog.Header>
+          <Box p={3}>
+            {contributors.map((contributor) => (
+              <Box
+                sx={{ fontSize: 1, display: 'flex' }}
+                key={contributor.name}
+              >
+                <Text sx={{ width: '100%' }}>{contributor.name}</Text>
+                <Text sx={{ width: '100%' }}>{contributor.type}</Text>
+                <Text sx={{ width: 'auto' }}>
+                  {formatNumber(contributor.requests)}
+                </Text>
+              </Box>
+            ))}
+          </Box>
+        </div>
+        <Box
+          sx={{
+            borderTop: '1px solid',
+            borderColor: 'border.default',
+            p: 3,
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Button onClick={() => setIsOpen(false)}>Close</Button>
+        </Box>
+      </Dialog>
     </Box>
   );
 }

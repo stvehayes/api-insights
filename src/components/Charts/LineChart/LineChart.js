@@ -1,52 +1,74 @@
+import { useContext } from 'react';
 import { Box, Text } from '@primer/react';
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Data } from '../../../data/Data';
+import { convertHexToRGB, convertMinutes } from '../../../util/Helpers';
+import { IncrementContext } from '../../../context/IncrementContext';
+import { PeriodContext } from '../../../context/PeriodContext';
 
 export function LineChart() {
+  const colorGood = '#0969DA';
+  const colorBad = '#CF222E';
+
+  const { selectedIncrement } = useContext(IncrementContext);
+  const { selectedPeriod } = useContext(PeriodContext);
+
   const labels = [
     {
       name: 'Total requests',
-      color: 'success.emphasis',
+      color: 'accent.emphasis',
     },
     {
       name: 'Rate-limited requests',
-      color: 'severe.emphasis',
+      color: 'danger.emphasis',
     },
   ];
 
+  const incrementsPerPeriod = Math.ceil(selectedPeriod / selectedIncrement);
+
+  const Data = Array.from({ length: incrementsPerPeriod }, (_, index) => ({
+    id: index + 1,
+    time: index * selectedIncrement,
+    requests: Math.floor(Math.random() * (5400 - 1200 + 1)) + 1200,
+    requestsFailed: Math.floor(Math.random() * (1000 - 100 + 1)),
+  }));
+
   const data = {
-    labels: Data.map((data) => data.time),
+    labels: Data.map((data) => {
+      const hours = Math.floor(data.time / 60);
+      const minutes = data.time % 60;
+      return `${hours}:${minutes.toString().padStart(2, '0')}`;
+    }),
     datasets: [
       {
         label: 'Requests',
         data: Data.map((data) => data.requests),
         fill: true,
-        borderColor: '#2DA44E',
+        borderColor: colorGood,
         borderWidth: 1,
         backgroundColor: (context) => {
           const ctx = context.chart.ctx;
           const gradient = ctx.createLinearGradient(0, 0, 0, 250);
-          gradient.addColorStop(0, 'rgba(218,251,225,1)');
-          gradient.addColorStop(1, 'rgba(218,251,225,0.0)');
+          gradient.addColorStop(0, convertHexToRGB(colorGood, 0.25));
+          gradient.addColorStop(1, convertHexToRGB(colorGood, 0.0));
           return gradient;
         },
-        pointHoverBackgroundColor: '#2DA44E',
+        pointHoverBackgroundColor: colorGood,
       },
       {
         label: 'Rate-limited requests',
         data: Data.map((data) => data.requestsFailed),
         fill: true,
-        borderColor: '#E16F24',
+        borderColor: colorBad,
         borderWidth: 1,
         backgroundColor: (context) => {
           const ctx = context.chart.ctx;
           const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-          gradient.addColorStop(0, 'rgba(255,241,229,1)');
-          gradient.addColorStop(1, 'rgba(255,241,229,0.0)');
+          gradient.addColorStop(0, convertHexToRGB(colorBad, 0.1));
+          gradient.addColorStop(1, convertHexToRGB(colorBad, 0.0));
           return gradient;
         },
-        pointHoverBackgroundColor: '#E16F24',
+        pointHoverBackgroundColor: colorBad,
       },
     ],
   };

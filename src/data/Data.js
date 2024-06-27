@@ -3,61 +3,75 @@ export const enterprise = !true;
 export const timePeriods = [
   {
     type: 'Last 30 minutes',
+    value: 30,
     selected: false,
   },
   {
     type: 'Last hour',
+    value: 60,
     selected: false,
   },
   {
     type: 'Last 3 hours',
+    value: 180,
     selected: true,
   },
   {
     type: 'Last 12 hours',
+    value: 720,
     selected: false,
   },
   {
     type: 'Last 24 hours',
+    value: 1440,
     selected: false,
   },
   {
     type: 'Last 7 days',
+    value: 10080,
     selected: false,
   },
   {
     type: 'Last 30 days',
+    value: 43200,
     selected: false,
   },
 ];
 
 export const timeIncrements = [
   {
-    type: '5 minute',
+    type: '5 minutes',
+    value: 5,
     selected: false,
   },
   {
     type: '10 minutes',
+    value: 10,
     selected: false,
   },
   {
     type: '30 minutes',
+    value: 30,
     selected: false,
   },
   {
     type: '1 hour',
+    value: 60,
     selected: true,
   },
   {
     type: '3 hours',
+    value: 180,
     selected: false,
   },
   {
     type: '12 hours',
+    value: 720,
     selected: false,
   },
   {
     type: '24 hours',
+    value: 1440,
     selected: false,
   },
 ];
@@ -475,10 +489,3 @@ export const requestLog = [
     timeWindow: '1:40am – 1:45am ',
   },
 ];
-
-export const Data = Array.from({ length: 13 }, (_, index) => ({
-  id: index + 1,
-  time: index + ':00',
-  requests: Math.floor(Math.random() * (5400 - 1200 + 1)) + 1200,
-  requestsFailed: Math.floor(Math.random() * (1000 - 100 + 1)),
-}));

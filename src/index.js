@@ -6,6 +6,8 @@ import './reset.css';
 import { Home } from './pages/Home/Home';
 import { App } from './pages/App/App';
 import { Time } from './pages/Time/Time';
+import { IncrementProvider } from './context/IncrementContext';
+import { PeriodProvider } from './context/PeriodContext';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
 
 root.render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <PeriodProvider>
+      <IncrementProvider>
+        <RouterProvider router={router} />
+      </IncrementProvider>
+    </PeriodProvider>
   </StrictMode>
 );

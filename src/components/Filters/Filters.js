@@ -6,17 +6,14 @@ import {
   FilterIcon,
   KeyAsteriskIcon,
   PersonIcon,
-  RelFilePathIcon,
-  RepoIcon,
+  PlusIcon,
   TriangleDownIcon,
   XIcon,
 } from '@primer/octicons-react';
 
-export function Filters({ count, empty }) {
+export function Filters({ count }) {
   const [isOpen, setIsOpen] = useState(false);
-  const returnFocusRef = useRef(null);
-
-  const filters = [
+  const [filters, setFilters] = useState([
     {
       name: 'Type',
       options: [
@@ -29,7 +26,7 @@ export function Filters({ count, empty }) {
       selected: false,
     },
     {
-      name: 'App name',
+      name: 'API client',
       options: [{ label: 'JIRA', value: 'option' }],
       operator: 'is one of',
       icon: AppsIcon,
@@ -49,28 +46,15 @@ export function Filters({ count, empty }) {
       icon: AlertIcon,
       selected: true,
     },
-    {
-      name: 'Route',
-      options: [{ label: 'route/name', value: 'option' }],
-      operator: 'is',
-      icon: RelFilePathIcon,
-      selected: false,
-    },
-    {
-      name: 'Path',
-      options: [{ label: 'path/name', value: 'option' }],
-      operator: 'is',
-      icon: RelFilePathIcon,
-      selected: false,
-    },
-    {
-      name: 'Repository',
-      options: [{ label: 'repo-name', value: 'option' }],
-      operator: 'is one of',
-      icon: RepoIcon,
-      selected: false,
-    },
-  ];
+  ]);
+
+  const returnFocusRef = useRef(null);
+
+  const removeFilter = (indexToRemove) => {
+    setFilters(filters.filter((_, index) => index !== indexToRemove));
+  };
+
+  const labels = ['Qualifier', 'Operator', 'Value'];
 
   const fakeDropdown = {
     width: '100%',
@@ -120,6 +104,49 @@ export function Filters({ count, empty }) {
           >
             Advanced filters
           </Dialog.Header>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 3,
+              p: 2,
+              pl: 7,
+              pr: 11,
+              bg: 'canvas.subtle',
+              borderBottom: '1px solid',
+              borderColor: 'border.default',
+            }}
+          >
+            <Text
+              sx={{
+                width: '400px',
+                fontSize: 0,
+                fontWeight: 'bold',
+                color: 'fg.muted',
+              }}
+            >
+              Qualifier
+            </Text>
+            <Text
+              sx={{
+                width: '300px',
+                fontSize: 0,
+                fontWeight: 'bold',
+                color: 'fg.muted',
+              }}
+            >
+              Operator
+            </Text>
+            <Text
+              sx={{
+                width: '100%',
+                fontSize: 0,
+                fontWeight: 'bold',
+                color: 'fg.muted',
+              }}
+            >
+              Value
+            </Text>
+          </Box>
 
           <Box p={3}>
             {filters.map((filter, index) => (
@@ -133,13 +160,22 @@ export function Filters({ count, empty }) {
                   mb: 3,
                 }}
               >
-                <Box sx={{ fontSize: '12px', color: 'fg.muted', mr: 3 }}>
+                <Box
+                  sx={{
+                    fontSize: '12px',
+                    color: 'fg.muted',
+                    mr: 3,
+                  }}
+                >
                   {index + 1}
                 </Box>
 
                 <Box
                   key={filter.name}
-                  sx={fakeDropdown}
+                  sx={{
+                    ...fakeDropdown,
+                    width: '400px',
+                  }}
                 >
                   <Box>
                     <Box sx={{ color: 'fg.muted', display: 'inline' }}>
@@ -166,9 +202,10 @@ export function Filters({ count, empty }) {
                 <Box>
                   <IconButton
                     icon={XIcon}
-                    aria-label='Edit filter'
+                    aria-label='Remove filter'
                     sx={{ color: 'fg.subtle' }}
                     variant='invisible'
+                    onClick={() => removeFilter(index)}
                   />
                 </Box>
               </Box>
@@ -181,17 +218,19 @@ export function Filters({ count, empty }) {
             borderColor: 'border.default',
             p: 3,
             display: 'flex',
-            justifyContent: 'flex-end',
-            gap: 2,
+            justifyContent: 'space-between',
           }}
         >
-          <Button onClick={() => setIsOpen(false)}>Close</Button>
-          <Button
-            variant='primary'
-            onClick={() => setIsOpen(false)}
-          >
-            Save
-          </Button>
+          <Button leadingVisual={PlusIcon}>Add a filter</Button>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Button onClick={() => setIsOpen(false)}>Close</Button>
+            <Button
+              variant='primary'
+              onClick={() => setIsOpen(false)}
+            >
+              Save
+            </Button>
+          </Box>
         </Box>
       </Dialog>
     </div>

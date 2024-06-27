@@ -11,9 +11,9 @@ import { Filters } from '../Filters/Filters';
 
 export function FilterBar({ count, empty }) {
   const filters = [
-    { name: 'Recent', selected: true },
+    { name: 'Type', selected: true },
     {
-      name: 'Most rate-limited',
+      name: 'User',
       selected: false,
     },
   ];
@@ -81,9 +81,9 @@ export function FilterBar({ count, empty }) {
         <ActionMenu>
           <ActionMenu.Button sx={{ ml: 2 }}>
             <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
-              Sort by:
+              Group by:
             </Box>{' '}
-            Recent
+            Type
           </ActionMenu.Button>{' '}
           <ActionMenu.Overlay align='end'>
             <ActionList selectionVariant='single'>
