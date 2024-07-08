@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, UnderlineNav } from '@primer/react';
+import { Box, Heading, Text, UnderlineNav } from '@primer/react';
 import { Page } from '../../layouts/Page';
 import { Header } from '../../components/Header/Header';
 import { DataCard } from '../../components/DataCard/DataCard';
@@ -29,7 +29,7 @@ export function App() {
                 current: false,
               },
               {
-                text: 'circle-ci',
+                text: 'CircleCI',
                 href: '/',
                 current: true,
               },
@@ -91,7 +91,7 @@ export function App() {
           </Box> */}
         </Box>
 
-        <Box sx={{ mt: 5 }}>
+        {/* <Box sx={{ mt: 5 }}>
           <UnderlineNav aria-label='Nav'>
             {children.map((child, index) => (
               <UnderlineNavItem
@@ -106,7 +106,33 @@ export function App() {
           </UnderlineNav>
           {currentTab === 'Routes' && <RouteLog />}
           {currentTab === 'Requests' && <RequestLog />}
+        </Box> */}
+        <Box
+          sx={{
+            pb: 2,
+            // mb: 2,
+            borderBottom: '1px solid',
+            borderColor: 'border.default',
+            width: '100%',
+          }}
+        >
+          <Heading
+            sx={{
+              fontSize: 3,
+            }}
+          >
+            Routes
+          </Heading>
+          <Text
+            sx={{
+              color: 'fg.muted',
+              fontSize: 1,
+            }}
+          >
+            View usage by individual route
+          </Text>
         </Box>
+        <RouteLog />
       </Box>
     </Page>
   );

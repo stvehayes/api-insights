@@ -12,7 +12,7 @@ export function DataChart() {
         px: 3,
         py: 3,
         textAlign: 'center',
-        mb: 3,
+        mb: 6,
         borderRadius: 2,
         border: '1px solid',
         borderColor: 'border.default',

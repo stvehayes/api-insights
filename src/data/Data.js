@@ -1,5 +1,22 @@
 export const enterprise = !true;
 
+const date = new Date();
+const month = date.toLocaleString('default', { month: 'short' });
+const day = date.getDate();
+const year = date.getFullYear();
+
+const randomDate = new Date(Date.now() - Math.floor(Math.random() * 86400000))
+  .toLocaleString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  })
+  .replace(' AM', 'am')
+  .replace(' PM', 'pm');
+
 export const timePeriods = [
   {
     type: 'Last 30 minutes',
@@ -78,202 +95,106 @@ export const timeIncrements = [
 
 export const accessTokens = [
   {
-    name: 'jira',
+    name: 'Jira + GitHub',
     username: 'sarahsmith',
-    avatar: 'https://randomuser.me/api/portraits/thumb/women/70.jpg',
-    type: 'Personal Access Token',
+    avatar:
+      'https://pbs.twimg.com/profile_images/1785701767357120512/d0vRt0Gk_400x400.png',
+    type: 'GitHub App',
     expires: 24,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'slack',
+    name: 'Slack + GitHub',
     username: 'mikejohnson',
-    avatar: 'https://randomuser.me/api/portraits/thumb/men/49.jpg',
+    avatar:
+      'https://pbs.twimg.com/profile_images/1808594616285081605/AymaXgIX_400x400.jpg',
     type: 'GitHub App',
     expires: 100,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'circle-ci',
+    name: 'CircleCI',
     username: 'emilyclark',
-    avatar: 'https://randomuser.me/api/portraits/thumb/women/26.jpg',
+    avatar:
+      'https://d2v9k5u4v94ulw.cloudfront.net/assets/images/2857620/original/e8c65607-f9f9-41d2-abd3-e458ffc9d140?1527816616',
     type: 'OAuth app',
     expires: 13,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'personal-token',
+    name: 'david-pat',
     username: 'davidharris',
     avatar: 'https://randomuser.me/api/portraits/thumb/men/10.jpg',
     type: 'Personal Access Token',
     expires: 100,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'azure-devops',
+    name: 'Azure Pipelines',
     username: 'lisamartin',
-    avatar: 'https://randomuser.me/api/portraits/thumb/women/19.jpg',
+    avatar:
+      'https://logowik.com/content/uploads/images/azure-pipelines8702.jpg',
     type: 'GitHub App',
     expires: 100,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'snyk',
+    name: 'snyk-pat',
     username: 'jamesbrown',
     avatar: 'https://randomuser.me/api/portraits/thumb/men/14.jpg',
     type: 'Personal Access Token',
     expires: 24,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'imgbot',
+    name: 'Imgbot',
     username: 'katiedavis',
-    avatar: 'https://randomuser.me/api/portraits/thumb/women/40.jpg',
+    avatar: 'https://avatars.githubusercontent.com/u/80986210?s=280&v=4',
     type: 'GitHub App',
     expires: 100,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'gitguardian',
-    username: 'robtaylor',
-    avatar: 'https://randomuser.me/api/portraits/thumb/men/7.jpg',
+    name: 'GitGuardian',
+    // username: 'robtaylor',
+    avatar: 'https://avatars.githubusercontent.com/u/27360172?s=200&v=4',
     type: 'OAuth app',
     expires: 100,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'codecov',
+    name: 'codecov-pat',
     username: 'amandabrown',
     avatar: 'https://randomuser.me/api/portraits/thumb/women/54.jpg',
     type: 'Personal Access Token',
     expires: 100,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
   {
-    name: 'codacy',
+    name: 'Zenhub',
     username: 'markwest',
-    avatar: 'https://randomuser.me/api/portraits/thumb/men/44.jpg',
+    avatar: 'https://avatars.githubusercontent.com/ml/9?s=400&v=4',
     type: 'GitHub App',
     expires: 100,
-    lastUsed: new Date(Date.now() - Math.floor(Math.random() * 86400000))
-      .toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })
-      .replace(' AM', 'am')
-      .replace(' PM', 'pm'),
+    lastUsed: randomDate,
     totalRequests: Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000,
     rateLimitedRequests: Math.floor(Math.random() * (2000 - 100 + 1)) + 100,
   },
@@ -347,11 +268,6 @@ export const trends = [
   },
 ];
 
-const date = new Date();
-const month = date.toLocaleString('default', { month: 'short' });
-const day = date.getDate();
-const year = date.getFullYear();
-
 export const requestLog = [
   {
     name: 'token-name',
@@ -367,6 +283,7 @@ export const requestLog = [
     repository: 'octocat/hello-world',
     error: 'Requests exceeded',
     timeWindow: '1:00am – 1:05am',
+    lastUsed: randomDate,
   },
   {
     name: 'other-token-name',
@@ -382,6 +299,7 @@ export const requestLog = [
     repository: 'octocat/hello-world',
     error: 'Requests exceeded',
     timeWindow: '1:05am – 1:10am',
+    lastUsed: randomDate,
   },
   {
     name: 'third-token-name',
@@ -397,6 +315,7 @@ export const requestLog = [
     repository: 'octocat/cool-project',
     error: 'Requests exceeded',
     timeWindow: '1:10am – 1:15am',
+    lastUsed: randomDate,
   },
   {
     name: 'fourth-token-name',
@@ -412,6 +331,7 @@ export const requestLog = [
     repository: 'octocat/awesome-repo',
     error: 'Requests exceeded but a much longer name  – test',
     timeWindow: '1:15am – 1:20am',
+    lastUsed: randomDate,
   },
   {
     name: 'fifth-token-name',
@@ -427,6 +347,7 @@ export const requestLog = [
     repository: 'octocat/cool-project',
     error: 'Requests exceeded',
     timeWindow: '1:20am – 1:25am',
+    lastUsed: randomDate,
   },
   {
     name: 'sixth-token-name',
@@ -442,6 +363,7 @@ export const requestLog = [
     repository: 'octocat/awesome-repo',
     error: 'Requests exceeded',
     timeWindow: '1:25am – 1:30am',
+    lastUsed: randomDate,
   },
   {
     name: 'seventh-token-name',
@@ -457,6 +379,7 @@ export const requestLog = [
     repository: 'octocat/cool-project',
     error: 'Requests exceeded',
     timeWindow: '1:30am – 1:35am',
+    lastUsed: randomDate,
   },
   {
     name: 'eighth-token-name',
@@ -472,6 +395,7 @@ export const requestLog = [
     repository: 'octocat/awesome-repo',
     error: 'Requests exceeded',
     timeWindow: '1:35am – 1:40am',
+    lastUsed: randomDate,
   },
   {
     name: 'ninth-token-name',
@@ -487,5 +411,6 @@ export const requestLog = [
     repository: 'octocat/cool-project',
     error: 'Requests exceeded',
     timeWindow: '1:40am – 1:45am ',
+    lastUsed: randomDate,
   },
 ];

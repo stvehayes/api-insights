@@ -17,6 +17,18 @@ export function FilterBar({ count, empty }) {
       selected: false,
     },
   ];
+
+  const sorts = [
+    {
+      name: 'Recent',
+      selected: true,
+    },
+    {
+      name: 'Most rate-limited',
+      selected: false,
+    },
+  ];
+
   return (
     <>
       <Box
@@ -83,11 +95,31 @@ export function FilterBar({ count, empty }) {
             <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
               Group by:
             </Box>{' '}
-            Type
+            {filters.find((filter) => filter.selected).name}
           </ActionMenu.Button>{' '}
           <ActionMenu.Overlay align='end'>
             <ActionList selectionVariant='single'>
               {filters.map((filter, index) => (
+                <ActionList.Item
+                  selected={filter.selected}
+                  key={filter.index}
+                >
+                  {filter.name}
+                </ActionList.Item>
+              ))}
+            </ActionList>
+          </ActionMenu.Overlay>
+        </ActionMenu>
+        <ActionMenu>
+          <ActionMenu.Button sx={{ ml: 2 }}>
+            <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
+              Sort by:
+            </Box>{' '}
+            {sorts.find((sort) => sort.selected).name}
+          </ActionMenu.Button>{' '}
+          <ActionMenu.Overlay align='end'>
+            <ActionList selectionVariant='single'>
+              {sorts.map((filter, index) => (
                 <ActionList.Item
                   selected={filter.selected}
                   key={filter.index}

@@ -27,17 +27,17 @@ export function Details({ username, avatar, type, limit }) {
 
   const contributors = [
     {
-      name: 'JIRA',
-      type: 'OAuth app',
+      name: 'jira-pat',
+      type: 'Personal Access Token',
       requests: 4700,
     },
     {
-      name: 'Slack',
-      type: 'OAuth app',
+      name: 'snyk-pat',
+      type: 'Personal Access Token',
       requests: 2100,
     },
     {
-      name: 'stvehayes-pat',
+      name: 'codecov-pat',
       type: 'Personal Access Token',
       requests: 1000,
     },
@@ -107,7 +107,7 @@ export function Details({ username, avatar, type, limit }) {
             }}
           >
             <Heading sx={{ fontSize: 1, display: 'block' }}>
-              Contributors
+              Request limit contributors
             </Heading>
             <Text
               sx={{
@@ -115,10 +115,56 @@ export function Details({ username, avatar, type, limit }) {
                 fontSize: 0,
               }}
             >
-              API clients contributing to overall limit
+              Other clients affecting your overall rate limit
             </Text>
           </Dialog.Header>
-          <Box p={3}>
+          <Box
+            sx={{
+              px: 3,
+              py: 1,
+              display: 'flex',
+              bg: 'canvas.subtle',
+              borderBottom: '1px solid',
+              borderColor: 'border.default',
+            }}
+          >
+            <Text
+              sx={{
+                display: 'block',
+                width: '100%',
+                ...label,
+              }}
+            >
+              Name
+            </Text>
+            <Text
+              sx={{
+                display: 'block',
+                width: '100%',
+                mr: 0,
+                ...label,
+              }}
+            >
+              Type
+            </Text>
+            <Text
+              sx={{
+                width: '165px',
+                textAlign: 'right',
+                ...label,
+              }}
+            >
+              Requests
+            </Text>
+          </Box>
+          <Box
+            sx={{
+              p: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1,
+            }}
+          >
             {contributors.map((contributor) => (
               <Box
                 sx={{ fontSize: 1, display: 'flex' }}
@@ -126,11 +172,29 @@ export function Details({ username, avatar, type, limit }) {
               >
                 <Text sx={{ width: '100%' }}>{contributor.name}</Text>
                 <Text sx={{ width: '100%' }}>{contributor.type}</Text>
-                <Text sx={{ width: 'auto' }}>
+                <Text
+                  sx={{
+                    display: 'block',
+                    width: '165px',
+                    textAlign: 'right',
+                  }}
+                >
                   {formatNumber(contributor.requests)}
                 </Text>
               </Box>
             ))}
+            <Box sx={{ fontSize: 1, display: 'flex', fontWeight: 'semibold' }}>
+              <Text sx={{ width: '100%' }}>Total</Text>
+              <Text
+                sx={{
+                  display: 'block',
+                  width: '165px',
+                  textAlign: 'right',
+                }}
+              >
+                {formatNumber(7800)}
+              </Text>
+            </Box>
           </Box>
         </div>
         <Box

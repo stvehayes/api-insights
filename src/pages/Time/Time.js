@@ -28,7 +28,7 @@ export function Time() {
                 current: false,
               },
               {
-                text: 'circle-ci',
+                text: 'CircleCI',
                 href: '/token-name',
                 current: false,
               },

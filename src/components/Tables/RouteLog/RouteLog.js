@@ -26,9 +26,11 @@ export function RouteLog() {
     gap: 3,
   };
 
+  const smallRowWidth = '20%';
+
   return (
     <Box
-      sx={{ width: '100%', mt: 5 }}
+      sx={{ width: '100%', mt: 3 }}
       id='requests'
     >
       <FilterBar
@@ -88,7 +90,7 @@ export function RouteLog() {
             {
               header: 'Requests',
               field: 'requests',
-              width: '25%',
+              width: smallRowWidth,
               renderCell: (row) => (
                 <Box
                   sx={{
@@ -104,10 +106,24 @@ export function RouteLog() {
             {
               header: 'Rate-limited requests',
               field: 'date',
-              width: '25%',
+              width: smallRowWidth,
               renderCell: (row) => (
                 <Text sx={{ fontSize: 1 }}>
                   {formatNumber(row.request / 150)}
+                </Text>
+              ),
+            },
+            {
+              header: 'Last rate-limited',
+              field: 'updatedAt',
+              width: smallRowWidth,
+              renderCell: (row) => (
+                <Text
+                  sx={{
+                    fontSize: 1,
+                  }}
+                >
+                  {row.lastUsed}
                 </Text>
               ),
             },

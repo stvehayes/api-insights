@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { DataTable, Table } from '@primer/react/experimental';
-import { Box, Link, Heading, IconButton, Text, Flash } from '@primer/react';
+import {
+  Box,
+  Link,
+  Heading,
+  IconButton,
+  Text,
+  Flash,
+  Avatar,
+} from '@primer/react';
 import { accessTokens } from '../../../data/Data';
 import { InfoIcon, XIcon } from '@primer/octicons-react';
 import { formatNumber } from '../../../util/Helpers';
@@ -96,60 +104,72 @@ export function AccessTokens() {
               renderCell: (row) => (
                 <Box
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
                     cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2,
                   }}
                 >
-                  <Link
-                    href='/token-name'
+                  <Avatar
+                    size={32}
+                    src={row.avatar}
+                    square={row.type !== 'Personal Access Token'}
                     sx={{
-                      color: 'fg.default',
-                      fontSize: 1,
-                      ':hover': {
-                        color: 'accent.emphasis',
-                        textDecoration: 'none',
-                      },
+                      display: 'inline',
                     }}
-                  >
-                    <Text>{row.name}</Text>
-                  </Link>
-                  <Text
-                    sx={{
-                      color: 'fg.muted',
-                      fontWeight: 400,
-                    }}
-                  >
-                    {(row.type === 'OAuth App' ||
-                      row.type === 'Personal Access Token') && (
-                      <>
-                        <Text>{row.username}</Text>
-                        <Text
-                          mx={1}
-                          as='span'
-                        >
-                          ·
-                        </Text>
-                      </>
-                    )}
-                    {row.type}
-                    {row.expires === 0 && (
-                      <>
-                        <Text
-                          mx={1}
-                          as='span'
-                        >
-                          ·
-                        </Text>
-                        <Text
-                          sx={{ color: 'danger.emphasis' }}
-                          as='span'
-                        >
-                          Expired
-                        </Text>
-                      </>
-                    )}
-                  </Text>
+                  />
+                  <Box sx={{}}>
+                    <Link
+                      href='/token-name'
+                      sx={{
+                        display: 'block',
+                        color: 'fg.default',
+                        fontSize: 1,
+                        ':hover': {
+                          color: 'accent.emphasis',
+                          textDecoration: 'none',
+                        },
+                      }}
+                    >
+                      <Text>{row.name}</Text>
+                    </Link>
+                    <Text
+                      sx={{
+                        color: 'fg.muted',
+                        fontWeight: 400,
+                      }}
+                    >
+                      {row.type}
+
+                      {row.type !== 'GitHub App' && row.username && (
+                        <>
+                          <Text
+                            mx={1}
+                            as='span'
+                          >
+                            ·
+                          </Text>
+                          <Text>{row.username}</Text>
+                        </>
+                      )}
+                      {row.expires === 0 && (
+                        <>
+                          <Text
+                            mx={1}
+                            as='span'
+                          >
+                            ·
+                          </Text>
+                          <Text
+                            sx={{ color: 'danger.emphasis' }}
+                            as='span'
+                          >
+                            Expired
+                          </Text>
+                        </>
+                      )}
+                    </Text>
+                  </Box>
                 </Box>
               ),
             },

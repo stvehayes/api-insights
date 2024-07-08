@@ -53,7 +53,6 @@ export function Home() {
           />
         </Box>
         <DataChart />
-
         <Box sx={{ mb: 6 }}>
           <AccessTokens />
         </Box>
