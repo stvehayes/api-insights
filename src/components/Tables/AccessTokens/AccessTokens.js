@@ -107,7 +107,7 @@ export function AccessTokens() {
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 2,
+                    gap: '12px',
                   }}
                 >
                   <Avatar
@@ -118,7 +118,7 @@ export function AccessTokens() {
                       display: 'inline',
                     }}
                   />
-                  <Box sx={{}}>
+                  <Box>
                     <Link
                       href='/token-name'
                       sx={{
