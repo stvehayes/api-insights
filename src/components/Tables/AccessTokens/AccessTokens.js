@@ -76,7 +76,7 @@ export function AccessTokens({ user }) {
                 ml: 2,
               }}
             >
-              You have expired tokens causing requests to be rate-limited. Visit{' '}
+              You have expired tokens causing requests to be rate limited. Visit{' '}
               <Link href='/'>Developer Settings</Link> to renew it.
             </Box>
             <Box
@@ -188,7 +188,7 @@ export function AccessTokens({ user }) {
               ),
             },
             {
-              header: 'Rate-limited requests',
+              header: 'Rate limited requests',
               field: 'type',
               width: smallRowWidth,
               renderCell: (row) => (
@@ -202,7 +202,7 @@ export function AccessTokens({ user }) {
               ),
             },
             {
-              header: 'Last rate-limited',
+              header: 'Last rate limited',
               field: 'updatedAt',
               width: smallRowWidth,
               renderCell: (row) => (

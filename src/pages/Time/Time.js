@@ -62,9 +62,9 @@ export function Time() {
               )}
             />
             <DataCard
-              title='Rate-limited requests'
+              title='Rate limited requests'
               // hasChart
-              description='Total number of requests that were rate-limited'
+              description='Total number of requests that were rate limited'
               data={formatNumber(
                 accessTokens.reduce(
                   (sum, item) => sum + item.rateLimitedRequests / 20,

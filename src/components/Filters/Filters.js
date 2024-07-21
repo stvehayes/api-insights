@@ -40,7 +40,7 @@ export function Filters({ count }) {
       selected: false,
     },
     {
-      name: 'Rate-limited',
+      name: 'Rate limited',
       options: [{ label: 'True', value: 'option' }],
       operator: 'is',
       icon: AlertIcon,

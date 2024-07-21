@@ -207,9 +207,9 @@ export const cards = [
     description: 'Total amount of requests for this access token',
   },
   {
-    title: 'Rate-limited',
+    title: 'Rate limited',
     data: '5.67%',
-    description: 'Percentage of requests that were rate-limited',
+    description: 'Percentage of requests that were rate limited',
   },
 ];
 
@@ -238,8 +238,8 @@ export const userAccessTokens = [
 
 export const trends = [
   {
-    title: 'Top rate-limited routes',
-    description: 'Most used rate-limited paths by this organization',
+    title: 'Top rate limited routes',
+    description: 'Most used rate limited paths by this organization',
     data: [
       {
         value: '/graphql',

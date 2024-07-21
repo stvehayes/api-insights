@@ -15,8 +15,8 @@ export function Home() {
     return num.toString();
   };
 
-  const filteredAccessTokens = accessTokens.filter(
-    (item) => item.type === 'GitHub app'
+  const filteredAccessTokens = userAccessTokens.filter(
+    (item) => item.type === 'GitHub App'
   );
 
   return (
@@ -49,7 +49,7 @@ export function Home() {
         >
           <DataCard
             title='Total requests'
-            description='Total requests made by this organization'
+            description='Total requests made by this user'
             data={formatNumber(
               filteredAccessTokens.reduce(
                 (sum, item) => sum + item.totalRequests,
@@ -58,18 +58,32 @@ export function Home() {
             )}
           />
           <DataCard
-            title='Rate-limited requests'
+            title='Rate limited requests'
             // hasChart
-            description='Total number of requests that were rate-limited'
+            description='Amount of requests that were rate limited'
             data={formatNumber(
-              filteredAccessTokens.reduce(
-                (sum, item) => sum + item.rateLimitedRequests / 3,
-                0
+              Math.round(
+                userAccessTokens
+                  .filter(
+                    (item) =>
+                      typeof item.rateLimitedRequests === 'number' &&
+                      !isNaN(item.rateLimitedRequests)
+                  )
+                  .reduce((sum, item) => sum + item.rateLimitedRequests / 2, 0)
               )
             )}
-            rateLimitedRequests={filteredAccessTokens.reduce(
-              (sum, item) => sum + item.rateLimitedRequests / 3,
-              0
+          />
+          <DataCard
+            title='Current limit'
+            description='Current limit of requests per hour'
+            data={formatNumber(5000)}
+            hasContributors
+            hasMetric
+            rateLimitedRequests={Math.round(
+              userAccessTokens.reduce(
+                (sum, item) => sum + item.rateLimitedRequests / 20,
+                0
+              )
             )}
           />
         </Box>

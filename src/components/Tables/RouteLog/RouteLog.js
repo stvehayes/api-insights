@@ -104,7 +104,7 @@ export function RouteLog() {
               ),
             },
             {
-              header: 'Rate-limited requests',
+              header: 'Rate limited requests',
               field: 'date',
               width: smallRowWidth,
               renderCell: (row) => (
@@ -114,7 +114,7 @@ export function RouteLog() {
               ),
             },
             {
-              header: 'Last rate-limited',
+              header: 'Last rate limited',
               field: 'updatedAt',
               width: smallRowWidth,
               renderCell: (row) => (

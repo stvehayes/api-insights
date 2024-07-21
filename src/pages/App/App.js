@@ -59,8 +59,8 @@ export function App() {
             />
 
             <DataCard
-              title='Rate-limited requests'
-              description='Total number of requests that were rate-limited'
+              title='Rate limited requests'
+              description='Total number of requests that were rate limited'
               data={formatNumber(
                 accessTokens.reduce(
                   (sum, item) => sum + item.rateLimitedRequests / 20,
@@ -75,7 +75,7 @@ export function App() {
             <DataCard
               title='Current limit'
               description='Current limit of requests per hour'
-              data={formatNumber(5000)}
+              data={formatNumber(25000)}
               hasContributors
               hasMetric
               rateLimitedRequests={accessTokens.reduce(
