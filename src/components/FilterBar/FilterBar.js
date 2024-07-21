@@ -1,33 +1,45 @@
+import React, { useContext, useState } from 'react';
 import {
   ActionMenu,
   ActionList,
   Box,
-  Button,
-  Text,
   TextInput,
+  IconButton,
 } from '@primer/react';
-import { TriangleDownIcon, XCircleFillIcon } from '@primer/octicons-react';
-import { Filters } from '../Filters/Filters';
+import { SearchIcon } from '@primer/octicons-react';
+import { SearchContext } from '../../context/SearchContext';
 
-export function FilterBar({ count, empty }) {
-  const filters = [
-    { name: 'Type', selected: true },
-    {
-      name: 'User',
-      selected: false,
-    },
-  ];
+export function FilterBar() {
+  const [filters, setFilters] = useState([
+    { name: 'All', selected: false },
+    { name: 'Rate limited', selected: true },
+  ]);
 
-  const sorts = [
-    {
-      name: 'Recent',
-      selected: true,
-    },
-    {
-      name: 'Most rate-limited',
-      selected: false,
-    },
-  ];
+  const [sorts, setSorts] = useState([
+    { name: 'All', selected: true },
+    { name: 'GitHub apps', selected: false },
+    { name: 'OAuth apps', selected: false },
+    { name: 'Personal access tokens', selected: false },
+  ]);
+
+  const handleSortSelect = (index) => {
+    setSorts(sorts.map((sort, i) => ({ ...sort, selected: i === index })));
+  };
+
+  const handleFilterSelect = (index) => {
+    setFilters(
+      filters.map((filter, i) => ({ ...filter, selected: i === index }))
+    );
+  };
+
+  const { searchValue, setSearchValue } = useContext(SearchContext);
+
+  const handleChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const location = window.location.pathname;
+  const showFilters = location === '/' || location === '/username';
 
   return (
     <>
@@ -37,99 +49,83 @@ export function FilterBar({ count, empty }) {
           width: '100%',
         }}
       >
-        <Filters
-          empty
-          count={count}
-        />
         <Box
           sx={{
             position: 'relative',
+            display: 'flex',
             mb: 3,
             width: '100%',
           }}
         >
           <TextInput
+            placeholder='Search by app or user'
+            value={searchValue}
+            onChange={handleChange}
             sx={{
               width: '100%',
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              borderRight: 0,
+            }}
+          />
+          <IconButton
+            icon={SearchIcon}
+            sx={{
               borderTopLeftRadius: 0,
               borderBottomLeftRadius: 0,
-              pl: empty ? 0 : '108px',
             }}
-            trailingAction={
-              !empty && (
-                <TextInput.Action
-                  icon={XCircleFillIcon}
-                  aria-label='Clear input'
-                  sx={{ color: 'fg.subtle' }}
-                />
-              )
-            }
           />
-          {!empty && (
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 2,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                fontSize: 1,
-                display: 'flex',
-              }}
-            >
-              <Text>rate-limited:</Text>
-              <Text
-                sx={{
-                  bg: 'accent.subtle',
-                  borderRadius: 1,
-                  px: 1,
-                  color: 'accent.emphasis',
-                }}
-              >
-                true
-              </Text>
-            </Box>
-          )}
         </Box>
-        <ActionMenu>
-          <ActionMenu.Button sx={{ ml: 2 }}>
-            <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
-              Group by:
-            </Box>{' '}
-            {filters.find((filter) => filter.selected).name}
-          </ActionMenu.Button>{' '}
-          <ActionMenu.Overlay align='end'>
-            <ActionList selectionVariant='single'>
-              {filters.map((filter, index) => (
-                <ActionList.Item
-                  selected={filter.selected}
-                  key={filter.index}
-                >
-                  {filter.name}
-                </ActionList.Item>
-              ))}
-            </ActionList>
-          </ActionMenu.Overlay>
-        </ActionMenu>
-        <ActionMenu>
-          <ActionMenu.Button sx={{ ml: 2 }}>
-            <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
-              Sort by:
-            </Box>{' '}
-            {sorts.find((sort) => sort.selected).name}
-          </ActionMenu.Button>{' '}
-          <ActionMenu.Overlay align='end'>
-            <ActionList selectionVariant='single'>
-              {sorts.map((filter, index) => (
-                <ActionList.Item
-                  selected={filter.selected}
-                  key={filter.index}
-                >
-                  {filter.name}
-                </ActionList.Item>
-              ))}
-            </ActionList>
-          </ActionMenu.Overlay>
-        </ActionMenu>
+        {showFilters && (
+          <>
+            <ActionMenu>
+              <ActionMenu.Button sx={{ ml: 2 }}>
+                <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
+                  Type:
+                </Box>{' '}
+                {sorts.find((sort) => sort.selected).name}
+              </ActionMenu.Button>{' '}
+              <ActionMenu.Overlay
+                align='end'
+                width='small'
+              >
+                <ActionList selectionVariant='single'>
+                  {sorts.map((sort, index) => (
+                    <ActionList.Item
+                      selected={sort.selected}
+                      key={index}
+                      onSelect={() => handleSortSelect(index)}
+                    >
+                      {sort.name}
+                    </ActionList.Item>
+                  ))}
+                </ActionList>
+              </ActionMenu.Overlay>
+            </ActionMenu>
+
+            <ActionMenu>
+              <ActionMenu.Button sx={{ ml: 2 }}>
+                <Box sx={{ color: 'fg.muted', display: 'inline-block' }}>
+                  Requests:
+                </Box>{' '}
+                {filters.find((filter) => filter.selected).name}
+              </ActionMenu.Button>{' '}
+              <ActionMenu.Overlay align='end'>
+                <ActionList selectionVariant='single'>
+                  {filters.map((filter, index) => (
+                    <ActionList.Item
+                      selected={filter.selected}
+                      key={index}
+                      onSelect={() => handleFilterSelect(index)}
+                    >
+                      {filter.name}
+                    </ActionList.Item>
+                  ))}
+                </ActionList>
+              </ActionMenu.Overlay>
+            </ActionMenu>
+          </>
+        )}
       </Box>
     </>
   );

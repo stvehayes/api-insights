@@ -9,15 +9,12 @@ import {
 } from '@primer/react';
 import { timePeriods, timeIncrements } from '../../data/Data';
 import { useLocation } from 'react-router-dom';
-import { Details } from '../Details/Details';
 import { IncrementContext } from '../../context/IncrementContext';
 import { PeriodContext } from '../../context/PeriodContext';
 import { convertMinutes } from '../../util/Helpers';
 
 export function Header() {
   const location = useLocation().pathname;
-  const [selectedIndex, setSelectedIndex] = useState(2);
-  const [selectedIncrementIndex, setSelectedIncrementIndex] = useState(3);
   const { selectedIncrement, setSelectedIncrement } =
     useContext(IncrementContext);
   const { selectedPeriod, setSelectedPeriod } = useContext(PeriodContext);
@@ -38,33 +35,7 @@ export function Header() {
         }}
       >
         <Box sx={{ width: '100%' }}>
-          <Heading sx={{ fontSize: 3, display: 'inline' }}>
-            API insights
-            {/* {location === '/' ? 'API' : <Link href='/'>API</Link>}
-            {location === '/' ? null : (
-              <Box sx={{ display: 'inline-flex', alignItems: 'center' }}>
-                <Text
-                  sx={{
-                    display: 'inline',
-                    fontSize: 'inherit',
-                    mx: 2,
-                  }}
-                >
-                  /
-                </Text>
-                <Text
-                  sx={{
-                    display: 'inline',
-                    fontSize: 'inherit',
-                  }}
-                >
-                  token-name
-                </Text>
-
-              </Box>
-            )}
-            */}
-          </Heading>
+          <Heading sx={{ fontSize: 3, display: 'inline' }}>API</Heading>
         </Box>
         <ActionMenu>
           <ActionMenu.Button>
@@ -119,7 +90,6 @@ export function Header() {
           </ActionMenu.Overlay>
         </ActionMenu>
       </Box>
-      {location !== '/' && <Details />}
     </>
   );
 }

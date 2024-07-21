@@ -1,5 +1,12 @@
-import { useState } from 'react';
-import { Box, Heading, Text, UnderlineNav } from '@primer/react';
+import { useRef, useState } from 'react';
+import {
+  Box,
+  Dialog,
+  Button,
+  Heading,
+  Text,
+  UnderlineNav,
+} from '@primer/react';
 import { Page } from '../../layouts/Page';
 import { Header } from '../../components/Header/Header';
 import { DataCard } from '../../components/DataCard/DataCard';
@@ -14,9 +21,6 @@ import { UnderlineNavItem } from '@primer/react/lib-esm/UnderlineNav/UnderlineNa
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 
 export function App() {
-  const children = ['Requests', 'Routes'];
-  const [currentTab, setCurrentTab] = useState(children[0]);
-
   return (
     <Page>
       <Box width='100%'>
@@ -24,12 +28,12 @@ export function App() {
           <Breadcrumbs
             items={[
               {
-                text: 'API insights',
+                text: 'API',
                 href: '/',
                 current: false,
               },
               {
-                text: 'CircleCI',
+                text: 'App Name',
                 href: '/',
                 current: true,
               },
@@ -53,9 +57,9 @@ export function App() {
                 )
               )}
             />
+
             <DataCard
               title='Rate-limited requests'
-              // hasChart
               description='Total number of requests that were rate-limited'
               data={formatNumber(
                 accessTokens.reduce(
@@ -68,57 +72,31 @@ export function App() {
                 0
               )}
             />
+            <DataCard
+              title='Current limit'
+              description='Current limit of requests per hour'
+              data={formatNumber(5000)}
+              hasContributors
+              hasMetric
+              rateLimitedRequests={accessTokens.reduce(
+                (sum, item) => sum + item.rateLimitedRequests / 20,
+                0
+              )}
+            />
           </Box>
           <Box>
             <DataChart />
           </Box>
-
-          {/* <Box
-            sx={{
-              display: 'flex',
-              flexDirection: ['column', null, 'row'],
-              gap: [0, null, 3],
-            }}
-          >
-            {trends.map((trend) => (
-              <TrendCard
-                key={trend.title}
-                title={trend.title}
-                data={trend.data}
-                description={trend.description}
-              />
-            ))}
-          </Box> */}
         </Box>
 
-        {/* <Box sx={{ mt: 5 }}>
-          <UnderlineNav aria-label='Nav'>
-            {children.map((child, index) => (
-              <UnderlineNavItem
-                key={index}
-                aria-current={currentTab === child ? 'page' : undefined}
-                onClick={() => setCurrentTab(child)}
-                href='#requests'
-              >
-                {child}
-              </UnderlineNavItem>
-            ))}
-          </UnderlineNav>
-          {currentTab === 'Routes' && <RouteLog />}
-          {currentTab === 'Requests' && <RequestLog />}
-        </Box> */}
         <Box
           sx={{
-            pb: 2,
-            // mb: 2,
-            borderBottom: '1px solid',
-            borderColor: 'border.default',
             width: '100%',
           }}
         >
           <Heading
             sx={{
-              fontSize: 3,
+              fontSize: 2,
             }}
           >
             Routes

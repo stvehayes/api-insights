@@ -1,6 +1,6 @@
-import { Breadcrumbs as PrimerBreadcrumbs } from '@primer/react';
+import { Label, Breadcrumbs as PrimerBreadcrumbs } from '@primer/react';
 
-export function Breadcrumbs({ items }) {
+export function Breadcrumbs({ items, noLabel }) {
   return (
     <PrimerBreadcrumbs
       sx={{
@@ -12,6 +12,11 @@ export function Breadcrumbs({ items }) {
           key={index}
           href={item.href}
           selected={index === items.length - 1}
+          sx={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 1,
+          }}
         >
           {item.text}
         </PrimerBreadcrumbs.Item>

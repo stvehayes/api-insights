@@ -1,5 +1,6 @@
 import {
   CodeSquareIcon,
+  CopilotIcon,
   HomeIcon,
   PackageDependenciesIcon,
   PlayIcon,
@@ -16,6 +17,11 @@ export function NavOrganization() {
     {
       icon: <PlayIcon />,
       text: 'Actions',
+      selected: false,
+    },
+    {
+      icon: <CopilotIcon />,
+      text: 'Copilot',
       selected: false,
     },
     {
@@ -37,7 +43,7 @@ export function NavOrganization() {
       <Heading
         as='h1'
         sx={{
-          fontSize: 3,
+          fontSize: 2,
           mb: 2,
         }}
       >

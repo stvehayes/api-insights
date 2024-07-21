@@ -23,13 +23,13 @@ export function Time() {
           <Breadcrumbs
             items={[
               {
-                text: 'API insights',
+                text: 'API',
                 href: '/',
                 current: false,
               },
               {
-                text: 'CircleCI',
-                href: '/token-name',
+                text: 'App Name',
+                href: '/app-name',
                 current: false,
               },
               {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { DataTable, Table } from '@primer/react/experimental';
 import {
   Box,
@@ -13,28 +13,42 @@ import { accessTokens } from '../../../data/Data';
 import { InfoIcon, XIcon } from '@primer/octicons-react';
 import { formatNumber } from '../../../util/Helpers';
 import { FilterBar } from '../../FilterBar/FilterBar';
+import { SearchContext } from '../../../context/SearchContext';
 
-export function AccessTokens() {
+export function AccessTokens({ user }) {
   const smallRowWidth = '20%';
   const [showFlash, setShowFlash] = useState(!true);
+
+  const { searchValue } = useContext(SearchContext);
+
+  const filteredData = accessTokens.filter((item) =>
+    item.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  const sortedData = user
+    ? filteredData
+        .filter((item) => item.type === 'GitHub App')
+        .sort((a, b) => b.rateLimitedRequests - a.rateLimitedRequests)
+    : filteredData.sort(
+        (a, b) => b.rateLimitedRequests - a.rateLimitedRequests
+      );
+
+  const displayData = searchValue ? filteredData : sortedData;
 
   return (
     <Box sx={{ width: '100%', mt: 5 }}>
       <Box
         sx={{
-          pb: 2,
           mb: 3,
-          borderBottom: '1px solid',
-          borderColor: 'border.default',
           width: '100%',
         }}
       >
         <Heading
           sx={{
-            fontSize: 3,
+            fontSize: 2,
           }}
         >
-          API clients
+          Apps and users
         </Heading>
         <Text
           sx={{
@@ -42,7 +56,7 @@ export function AccessTokens() {
             fontSize: 1,
           }}
         >
-          View usage by individual API client
+          View usage by individual app or user
         </Text>
       </Box>
       {showFlash && (
@@ -93,12 +107,10 @@ export function AccessTokens() {
         }}
       >
         <DataTable
-          data={accessTokens.sort(
-            (a, b) => b.rateLimitedRequests - a.rateLimitedRequests
-          )}
+          data={displayData}
           columns={[
             {
-              header: 'Token',
+              header: 'Name',
               field: 'name',
               rowHeader: true,
               renderCell: (row) => (
@@ -120,7 +132,9 @@ export function AccessTokens() {
                   />
                   <Box>
                     <Link
-                      href='/token-name'
+                      href={
+                        row.type === 'GitHub App' ? '/app-name' : '/username'
+                      }
                       sx={{
                         display: 'block',
                         color: 'fg.default',
@@ -139,33 +153,19 @@ export function AccessTokens() {
                         fontWeight: 400,
                       }}
                     >
-                      {row.type}
+                      {row.type !== 'Personal Access Token' && row.type}
 
                       {row.type !== 'GitHub App' && row.username && (
                         <>
-                          <Text
-                            mx={1}
-                            as='span'
-                          >
-                            ·
-                          </Text>
+                          {row.type !== 'Personal Access Token' && (
+                            <Text
+                              mx={1}
+                              as='span'
+                            >
+                              ·
+                            </Text>
+                          )}
                           <Text>{row.username}</Text>
-                        </>
-                      )}
-                      {row.expires === 0 && (
-                        <>
-                          <Text
-                            mx={1}
-                            as='span'
-                          >
-                            ·
-                          </Text>
-                          <Text
-                            sx={{ color: 'danger.emphasis' }}
-                            as='span'
-                          >
-                            Expired
-                          </Text>
                         </>
                       )}
                     </Text>
